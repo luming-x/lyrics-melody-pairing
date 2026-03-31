@@ -1,0 +1,46 @@
+<!-- 首页 -->
+<view class="container">
+  <!-- 欢迎区域 -->
+  <view class="welcome-section">
+    <view class="logo-placeholder">
+      <text class="logo-text">🎵</text>
+    </view>
+    <text class="welcome-text">歌词旋律配对工具</text>
+    <text class="subtitle">让你的创作灵感与旋律完美结合</text>
+  </view>
+
+  <!-- 快捷操作 -->
+  <view class="quick-actions">
+    <view class="action-item" bindtap="navigateToCreate">
+      <view class="action-icon">✏️</view>
+      <text class="action-text">创建新作品</text>
+    </view>
+    <view class="action-item" bindtap="navigateToLibrary">
+      <view class="action-icon">📚</view>
+      <text class="action-text">作品库</text>
+    </view>
+  </view>
+
+  <!-- 最近作品 -->
+  <view class="recent-section">
+    <view class="section-header">
+      <text class="section-title">最近创作</text>
+      <text class="more" bindtap="navigateToLibrary">查看全部</text>
+    </view>
+
+    <view wx:if="{{recentWorks.length > 0}}" class="work-list">
+      <view class="work-item" wx:for="{{recentWorks}}" wx:key="_id" bindtap="playWork" data-id="{{item._id}}">
+      <view class="work-info">
+        <text class="work-title">{{item.title}}</text>
+        <text class="work-meta">{{item.lyricsCount}}段歌词 · {{item.updatedAt}}</text>
+      </view>
+      <view class="play-icon">▶️</view>
+      </view>
+    </view>
+
+    <view wx:else class="empty-state">
+      <view class="empty-icon">📝</view>
+      <text>还没有作品，开始创作吧！</text>
+    </view>
+  </view>
+</view>

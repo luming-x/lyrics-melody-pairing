@@ -1,0 +1,19 @@
+{
+  "collection": "works",
+  "description": "作品集合，存储所有歌词旋律配对作品",
+  "schema": {
+    "title": "string - 作品标题",
+    "theme": "string - 创作主题",
+    "tags": "array - 标签数组",
+    "notes": "string - 创作灵感/笔记",
+    "lyrics": "array - 歌词数组，每段包含typeIndex、content、melodyUrl",
+    "lyricsCount": "number - 歌词段落数",
+    "melodyCount": "number - 已配对旋律数",
+    "createdAt": "timestamp - 创建时间",
+    "updatedAt": "timestamp - 更新时间"
+  },
+  "permissions": {
+    "read": true,
+    "write": true
+  }
+}

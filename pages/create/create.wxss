@@ -1,0 +1,110 @@
+/* 创作页面样式 */
+.form-item {
+  margin-bottom: 30rpx;
+}
+
+.label {
+  display: block;
+  font-size: 28rpx;
+  color: #2c3e50;
+  margin-bottom: 12rpx;
+  font-weight: 500;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.btn-add {
+  background: #3498db;
+  color: white;
+  border-radius: 20rpx;
+  border: none;
+  padding: 10rpx 20rpx;
+  font-size: 24rpx;
+}
+
+.lyrics-list {
+  margin-top: 20rpx;
+}
+
+.lyric-item {
+  background: #f8f9fa;
+  border-radius: 12rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.lyric-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.section-type-badge {
+  display: inline-block;
+  padding: 6rpx 16rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+}
+
+.delete-btn {
+  color: #e74c3c;
+  font-size: 24rpx;
+}
+
+.melody-section {
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #e0e0e0;
+}
+
+.melody-label {
+  display: block;
+  font-size: 26rpx;
+  color: #7f8c8d;
+  margin-bottom: 12rpx;
+}
+
+.melody-actions {
+  display: flex;
+  gap: 12rpx;
+  flex-wrap: wrap;
+}
+
+.melody-player {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.melody-status {
+  color: #27ae60;
+  font-size: 24rpx;
+}
+
+.btn-sm {
+  padding: 12rpx 24rpx;
+  font-size: 24rpx;
+}
+
+.actions {
+  margin-top: 40rpx;
+  padding-bottom: 40rpx;
+}
+
+.actions button {
+  width: 100%;
+}

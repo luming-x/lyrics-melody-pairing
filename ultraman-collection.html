@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奥特曼宇宙 - 英雄集合</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            margin-bottom: 40px;
+            background: linear-gradient(90deg, rgba(255, 87, 87, 0.2), rgba(255, 195, 0, 0.2));
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 87, 87, 0.3);
+        }
+
+        .header h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ff5757, #ffc300);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 87, 87, 0.5);
+        }
+
+        .header p {
+            font-size: 20px;
+            color: #ddd;
+        }
+
+        .subtitle {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 30px;
+            background: linear-gradient(45deg, #ff5757, #ffc300);
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 87, 87, 0.4);
+        }
+
+        .collection {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 87, 87, 0.3);
+            border-color: rgba(255, 87, 87, 0.5);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .hero-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+            color: #ff5757;
+        }
+
+        .card-subtitle {
+            font-size: 16px;
+            color: #aaa;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .color-spectrum {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .color-dot {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffc300;
+        }
+
+        .special-ability {
+            margin-top: 15px;
+            padding: 10px;
+            background: linear-gradient(45deg, rgba(255, 87, 87, 0.2), rgba(255, 195, 0, 0.2));
+            border-radius: 10px;
+            font-size: 14px;
+            text-align: center;
+            border: 1px solid rgba(255, 87, 87, 0.3);
+        }
+
+        .featured {
+            grid-column: span 2;
+            background: linear-gradient(135deg, rgba(255, 87, 87, 0.3), rgba(255, 195, 0, 0.3));
+        }
+
+        .featured .hero-icon {
+            background: linear-gradient(135deg, #ff5757, #ffc300);
+            width: 150px;
+            height: 150px;
+            font-size: 80px;
+        }
+
+        .legendary-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(45deg, #ff5757, #ffc300);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 87, 87, 0.5);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer p {
+            color: #888;
+            font-size: 16px;
+        }
+
+        .footer .heart {
+            color: #ff5757;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 36px;
+            }
+
+            .featured {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>奥特曼宇宙</h1>
+            <p>守护地球的光之巨人</p>
+            <div class="subtitle">ULTRA HEROES COLLECTION</div>
+        </div>
+
+        <div class="collection">
+            <!-- 初代奥特曼 -->
+            <div class="card featured">
+                <div class="legendary-badge">★ 传奇英雄</div>
+                <div class="hero-icon">🌟</div>
+                <div class="card-title">初代奥特曼</div>
+                <div class="card-subtitle">ULTRAMAN</div>
+                <div class="color-spectrum">
+                    <div class="color-dot" style="background: linear-gradient(135deg, #ff0000, #cc0000);"></div>
+                    <div class="color-dot" style="background: linear-gradient(135deg, #silver, #aaaaaa);"></div>
+                    <div class="color-dot" style="background: linear-gradient(135deg, #0066cc, #004499);"></div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-label">身高</div>
+                        <div class="stat-value">40米</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">体重</div>
+                        <div class="stat-value">3.5万吨</div>
+                    </div>
+                </div>
+                <div class="special-ability">必杀技：斯派修姆光线</div>
+            </div>
+
+            <!-- 赛文奥特曼 -->
+            <div class="card">
+                <div class="hero-icon">👁️</div>
+                <div class="card-title">赛文奥特曼</div>
+                <div class="card-subtitle">ULTRASEVEN</div>
+                <div class="color-spectrum">
+                    <div class="color-dot" style="background: linear-gradient(135deg, #cc0000, #990000);"></div>
+                    <div class="color-dot" style="background: linear-gradient(135deg, #silver, #999999);"></div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-label">身高</div>
+                        <div class="stat-value">40米</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">体重</div>
+                        <div class="stat-value">3.5万吨</div>
+                    </div>
+                </div>
+                <div class="special-ability">必杀技：集束射线</div>
+            </div>
+
+            <!-- 杰克奥特曼 -->
+            <div class="card">
+                <div class="hero-icon">💪</div>
+                <div class="card-title">杰克奥特曼</div>
+                <div class="card-subtitle">RETURN OF ULTRAMAN</div>
+                <div class="color-spectrum">
+                    <div class="color-dot" style="background: linear-gradient(135deg, #ff0000, #cc0000);"></div>
+                    <div class="color-dot" style="background: linear-gradient(135deg, #silver, #aaaaaa);"></div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-label">身高</div>
+                        <div class="stat-value">40米</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">体重</div>
+                        <div class="stat-value">3.5万吨</div>
+                    </div>
+                </div>
+                <div class="special-ability">必杀技：斯派修姆光线</div>
+            </div>
+
+            <!-- 艾斯奥特曼 -->
+            <div class="card">
+                <div class="hero-icon">✨</div>
+                <div class="card-title">艾斯奥特曼</div>
+                <div class="card-subtitle">ULTRAMAN ACE</div>
+                <div class="color-spectrum">
+                    <div class="color-dot" style="background: linear-gradient(135deg, #cc0000, #990000);"></div>
+                    <div class="color-dot" style="background: linear-gradient(135deg, #silver, #999999);"></div>
+                    <div class="color-dot" style="background: linear-gradient(135deg, #ffd700, #cc9900);"></div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-label">身高</div>
+                        <div class="stat-value">40米</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">体重</div>
+                        <div class="stat-value">4.5万吨</div>
+                    </div>
+                </div>
+                <div class="special-ability">必杀技：梅塔利姆光线</div>
+            </div>
+
+            <!-- 泰罗奥特曼 -->
+            <div class="card">
+                <div class="hero-icon">🔥</div>
+                <div class="card-title">泰罗奥特曼</div>
+                <div class="card-subtitle">ULTRAMAN TARO</div>
+                <div class="color-spectrum">
+                    <div class="color-dot" style="background: linear-gradient(135deg, #ff0000, #cc0000);"></div>
+                    <div class="color-dot" style="background: linear-gradient(135deg, #silver, #aaaaaa);"></div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-label">身高</div>
+                        <div class="stat-value">53米</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">体重</div>
+                        <div class="stat-value">5.5万吨</div>
+                    </div>
+                </div>
+                <div class="special-ability">必杀技：斯特利姆光线</div>
+            </div>
+
+            <!-- 雷欧奥特曼 -->
+            <div class="card">
+                <div class="hero-icon">🦁</div>
+                <div class="card-title">雷欧奥特曼</div>
+                <div class="card-subtitle">ULTRAMAN LEO</div>
+                <div class="color-spectrum">
+                    <div class="color-dot" style="background: linear-gradient(135deg, #cc0000, #990000);"></div>
+                    <div class="color-dot" style="background: linear-gradient(135deg, #silver, #999999);"></div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-label">身高</div>
+                        <div class="stat-value">52米</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">体重</div>
+                        <div class="stat-value">4.8万吨</div>
+                    </div>
+                </div>
+                <div class="special-ability">必杀技：雷欧飞踢</div>
+            </div>
+
+            <!-- 迪迦奥特曼 -->
+            <div class="card featured">
+                <div class="legendary-badge">🔥 人气之王</div>
+                <div class="hero-icon">🌈</div>
+                <div class="card-title">迪迦奥特曼</div>
+                <div class="card-subtitle">ULTRAMAN TIGA</div>
+                <div class="color-spectrum">
+                    <div class="color-dot" style="background: linear-gradient(135deg, #ff0000, #cc0000);"></div>
+                    <div class="color-dot" style="background: linear-gradient(135deg, #silver, #aaaaaa);"></div>
+                    <div class="color-dot" style="background: linear-gradient(135deg, #9900cc, #660099);"></div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-label">身高</div>
+                        <div class="stat-value">53米</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">体重</div>
+                        <div class="stat-value">4.4万吨</div>
+                    </div>
+                </div>
+                <div class="special-ability">必杀技：哉佩利敖光线</div>
+            </div>
+
+            <!-- 戴拿奥特曼 -->
+            <div class="card">
+                <div class="hero-icon">🚀</div>
+                <div class="card-title">戴拿奥特曼</div>
+                <div class="card-subtitle">ULTRAMAN DYNA</div>
+                <div class="color-spectrum">
+                    <div class="color-dot" style="background: linear-gradient(135deg, #cc0000, #990000);"></div>
+                    <div class="color-dot" style="background: linear-gradient(135deg, #silver, #999999);"></div>
+                    <div class="color-dot" style="background: linear-gradient(135deg, #0066cc, #004499);"></div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-label">身高</div>
+                        <div class="stat-value">55米</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">体重</div>
+                        <div class="stat-value">4.5万吨</div>
+                    </div>
+                </div>
+                <div class="special-ability">必杀技：加尔奈特轰炸</div>
+            </div>
+
+            <!-- 盖亚奥特曼 -->
+            <div class="card">
+                <div class="hero-icon">🌍</div>
+                <div class="card-title">盖亚奥特曼</div>
+                <div class="card-subtitle">ULTRAMAN GAIA</div>
+                <div class="color-spectrum">
+                    <div class="color-dot" style="background: linear-gradient(135deg, #cc0000, #990000);"></div>
+                    <div class="color-dot" style="background: linear-gradient(135deg, #silver, #999999);"></div>
+                    <div class="color-dot" style="background: linear-gradient(135deg, #006600, #004400);"></div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-label">身高</div>
+                        <div class="stat-value">50米</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">体重</div>
+                        <div class="stat-value">4.2万吨</div>
+                    </div>
+                </div>
+                <div class="special-ability">必杀技：光子冰刀</div>
+            </div>
+
+            <!-- 梦比优斯奥特曼 -->
+            <div class="card">
+                <div class="hero-icon">💫</div>
+                <div class="card-title">梦比优斯奥特曼</div>
+                <div class="card-subtitle">ULTRAMAN MEBIUS</div>
+                <div class="color-spectrum">
+                    <div class="color-dot" style="background: linear-gradient(135deg, #ff0000, #cc0000);"></div>
+                    <div class="color-dot" style="background: linear-gradient(135deg, #silver, #aaaaaa);"></div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-label">身高</div>
+                        <div class="stat-value">49米</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">体重</div>
+                        <div class="stat-value">3.5万吨</div>
+                    </div>
+                </div>
+                <div class="special-ability">必杀技：梦比姆射线</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>奥特曼宇宙 <span class="heart">♥</span> 永恒的守护</p>
+            <p style="font-size: 14px; margin-top: 10px;">ULTRA HEROES - Forever Guardian</p>
+        </div>
+    </div>
+</body>
+</html>

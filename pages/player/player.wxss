@@ -1,0 +1,164 @@
+/* 播放器页面样式 */
+.work-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40rpx 30rpx;
+  border-radius: 0 0 40rpx 40rpx;
+  color: white;
+}
+
+.work-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+  display: block;
+}
+
+.work-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-bottom: 12rpx;
+}
+
+.tag {
+  padding: 6rpx 16rpx;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20rpx;
+  font-size: 24rpx;
+}
+
+.tag-primary {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.work-theme {
+  font-size: 26rpx;
+  opacity: 0.9;
+}
+
+.lyrics-scroll {
+  height: 800rpx;
+  padding: 20rpx;
+}
+
+.lyrics-list {
+  padding-bottom: 40rpx;
+}
+
+.lyric-section {
+  background: white;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  border: 3rpx solid transparent;
+  transition: all 0.3s;
+}
+
+.lyric-section.active {
+  border-color: #667eea;
+  box-shadow: 0 0 0 4rpx rgba(102, 126, 234, 0.1);
+}
+
+.section-type {
+  display: inline-block;
+  padding: 6rpx 20rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  margin-bottom: 16rpx;
+}
+
+.lyric-content {
+  font-size: 30rpx;
+  color: #2c3e50;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  margin-bottom: 20rpx;
+}
+
+.melody-info {
+  padding-top: 20rpx;
+  border-top: 1rpx solid #ecf0f1;
+}
+
+.melody-badge {
+  display: block;
+  color: #27ae60;
+  font-size: 26rpx;
+  margin-bottom: 12rpx;
+}
+
+.melody-actions {
+  display: flex;
+  gap: 12rpx;
+}
+
+.btn-play {
+  padding: 16rpx 32rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 50rpx;
+  font-size: 28rpx;
+  border: none;
+  transition: all 0.3s;
+}
+
+.btn-play.playing {
+  background: #e74c3c;
+}
+
+.melody-placeholder {
+  padding-top: 20rpx;
+  border-top: 1rpx solid #ecf0f1;
+}
+
+.placeholder-text {
+  color: #95a5a6;
+  font-size: 26rpx;
+}
+
+.notes-section {
+  background: #fff9c4;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin: 20rpx;
+}
+
+.notes-header {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #f39c12;
+  margin-bottom: 12rpx;
+}
+
+.notes-content {
+  font-size: 28rpx;
+  color: #7f8c8d;
+  line-height: 1.6;
+}
+
+.bottom-actions {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 20rpx;
+  display: flex;
+  gap: 20rpx;
+  box-shadow: 0 -2rpx 12rpx rgba(0, 0, 0, 0.08);
+}
+
+.bottom-actions button {
+  flex: 1;
+}
+
+.loading-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #95a5a6;
+  font-size: 28rpx;
+}

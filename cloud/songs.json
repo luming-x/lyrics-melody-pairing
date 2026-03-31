@@ -1,0 +1,18 @@
+{
+  "collection": "songs",
+  "description": "歌曲信息集合，存储歌曲基本信息",
+  "schema": {
+    "songId": "string - 歌曲唯一标识",
+    "title": "string - 歌曲标题",
+    "theme": "string - 创作主题",
+    "author": "string - 作者",
+    "tags": "array - 标签数组",
+    "status": "string - 状态（draft:草稿, published:已发布, archived:已归档）",
+    "createdAt": "timestamp - 创建时间",
+    "updatedAt": "timestamp - 更新时间"
+  },
+  "permissions": {
+    "read": true,
+    "write": true
+  }
+}

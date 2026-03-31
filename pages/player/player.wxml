@@ -1,0 +1,64 @@
+<!-- 播放器页面 -->
+<view class="container" wx:if="{{work}}">
+  <!-- 作品信息 -->
+  <view class="work-header">
+    <text class="work-title">{{work.title}}</text>
+    <view class="work-tags" wx:if="{{work.tags && work.tags.length > 0}}">
+      <view class="tag tag-primary" wx:for="{{work.tags}}" wx:key="*this">{{item}}</view>
+    </view>
+    <text class="work-theme" wx:if="{{work.theme}}">主题: {{work.theme}}</text>
+  </view>
+
+  <!-- 歌词与旋律列表 -->
+  <scroll-view class="lyrics-scroll" scroll-y scroll-into-view="{{currentSectionId}}" scroll-with-animation>
+    <view class="lyrics-list">
+      <view
+        class="lyric-section {{index === currentIndex ? 'active' : ''}}"
+        wx:for="{{work.lyrics}}"
+        wx:key="index"
+        id="section-{{index}}"
+      >
+        <!-- 段落类型 -->
+        <view class="section-type">{{sectionTypes[item.typeIndex]}}</view>
+
+        <!-- 歌词内容 -->
+        <view class="lyric-content">{{item.content}}</view>
+
+        <!-- 旋律信息 -->
+        <view class="melody-info" wx:if="{{item.melodyUrl}}">
+          <text class="melody-badge">🎵 已配对旋律</text>
+          <view class="melody-actions">
+            <button
+              class="btn-play {{index === currentIndex && isPlaying ? 'playing' : ''}}"
+              bindtap="playMelody"
+              data-index="{{index}}"
+              data-url="{{item.melodyUrl}}"
+            >
+              {{index === currentIndex && isPlaying ? '暂停' : '播放'}}
+            </button>
+          </view>
+        </view>
+        <view class="melody-placeholder" wx:else>
+          <text class="placeholder-text">暂无旋律配对</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 创作笔记 -->
+  <view class="notes-section" wx:if="{{work.notes}}">
+    <view class="notes-header">创作灵感</view>
+    <view class="notes-content">{{work.notes}}</view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-actions">
+    <button class="btn btn-secondary" bindtap="editWork">编辑作品</button>
+    <button class="btn btn-success" bindtap="shareWork">分享</button>
+  </view>
+</view>
+
+<!-- 加载状态 -->
+<view wx:else class="loading-state">
+  <text>加载中...</text>
+</view>

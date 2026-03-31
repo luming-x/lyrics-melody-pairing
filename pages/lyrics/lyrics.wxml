@@ -1,0 +1,50 @@
+<!-- 作品库页面 -->
+<view class="container">
+  <!-- 搜索框 -->
+  <view class="search-bar">
+    <text class="search-icon">🔍</text>
+    <input class="search-input" placeholder="搜索作品、歌词..." bindinput="onSearch" value="{{searchKey}}"></input>
+  </view>
+
+  <!-- 筛选标签 -->
+  <view class="filter-tags">
+    <view class="filter-tag {{filterType === 'all' ? 'active' : ''}}" bindtap="setFilter" data-type="all">全部</view>
+    <view class="filter-tag {{filterType === 'recent' ? 'active' : ''}}" bindtap="setFilter" data-type="recent">最近创作</view>
+    <view class="filter-tag {{filterType === 'withMelody' ? 'active' : ''}}" bindtap="setFilter" data-type="withMelody">已配对旋律</view>
+  </view>
+
+  <!-- 作品列表 -->
+  <view wx:if="{{filteredWorks.length > 0}}" class="work-list">
+    <view class="work-card" wx:for="{{filteredWorks}}" wx:key="_id" bindtap="viewWork" data-id="{{item._id}}">
+      <view class="work-header">
+        <text class="work-title">{{item.title}}</text>
+        <view class="work-tags">
+          <view class="tag tag-primary" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</view>
+        </view>
+      </view>
+
+      <view class="work-preview">
+        <text class="preview-text">{{item.lyrics[0].content}}</text>
+      </view>
+
+      <view class="work-footer">
+        <view class="work-meta">
+          <text class="meta-item">📝 {{item.lyricsCount}}段</text>
+          <text class="meta-item">🎵 {{item.melodyCount || 0}}段旋律</text>
+          <text class="meta-item">📅 {{item.updatedAt}}</text>
+        </view>
+        <view class="work-actions">
+          <button class="btn-icon" bindtap="editWork" data-id="{{item._id}}" catchtap="true">编辑</button>
+          <button class="btn-icon" bindtap="deleteWork" data-id="{{item._id}}" catchtap="true">删除</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view wx:else class="empty-state">
+    <view class="empty-icon">📝</view>
+    <text class="empty-text">{{searchKey ? '没有找到相关作品' : '还没有作品，开始创作吧！'}}</text>
+    <button wx:if="{{!searchKey}}" class="btn btn-primary" bindtap="navigateToCreate">创建第一个作品</button>
+  </view>
+</view>

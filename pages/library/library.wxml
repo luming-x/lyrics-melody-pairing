@@ -1,0 +1,8 @@
+<!-- 库页面（备用） -->
+<view class="container">
+  <view class="empty-state">
+    <view class="empty-icon">📚</view>
+    <text>此页面功能已集成到作品库</text>
+    <button class="btn btn-primary" bindtap="goToLyrics">前往作品库</button>
+  </view>
+</view>

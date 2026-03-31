@@ -1,0 +1,132 @@
+/* 作品库页面样式 */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 50rpx;
+  padding: 20rpx 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.06);
+}
+
+.search-icon {
+  font-size: 32rpx;
+  margin-right: 16rpx;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 28rpx;
+}
+
+.filter-tags {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 24rpx;
+  overflow-x: auto;
+}
+
+.filter-tag {
+  padding: 12rpx 28rpx;
+  background: white;
+  border-radius: 30rpx;
+  font-size: 26rpx;
+  color: #7f8c8d;
+  white-space: nowrap;
+  border: 2rpx solid #ecf0f1;
+  transition: all 0.3s;
+}
+
+.filter-tag.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: transparent;
+}
+
+.work-list {
+  padding-bottom: 40rpx;
+}
+
+.work-card {
+  background: white;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.08);
+}
+
+.work-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20rpx;
+}
+
+.work-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 12rpx;
+}
+
+.work-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8rpx;
+}
+
+.work-preview {
+  background: #f8f9fa;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  max-height: 120rpx;
+  overflow: hidden;
+}
+
+.preview-text {
+  font-size: 26rpx;
+  color: #7f8c8d;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.work-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #ecf0f1;
+}
+
+.work-meta {
+  display: flex;
+  gap: 24rpx;
+  flex-wrap: wrap;
+}
+
+.meta-item {
+  font-size: 24rpx;
+  color: #95a5a6;
+}
+
+.work-actions {
+  display: flex;
+  gap: 16rpx;
+}
+
+.btn-icon {
+  padding: 8rpx 20rpx;
+  background: #ecf0f1;
+  color: #2c3e50;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  border: none;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #95a5a6;
+  margin: 30rpx 0 40rpx 0;
+}

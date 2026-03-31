@@ -1,0 +1,69 @@
+<!-- 创作页面 -->
+<view class="container">
+  <!-- 作品信息 -->
+  <view class="card">
+    <view class="form-item">
+      <text class="label">作品标题</text>
+      <input class="input-box" placeholder="给你的作品起个名字" bindinput="onTitleInput" value="{{title}}"></input>
+    </view>
+
+    <view class="form-item">
+      <text class="label">创作主题</text>
+      <input class="input-box" placeholder="例如：爱情、友情、梦想..." bindinput="onThemeInput" value="{{theme}}"></input>
+    </view>
+
+    <view class="form-item">
+      <text class="label">标签（可选）</text>
+      <input class="input-box" placeholder="用逗号分隔，例如：流行,抒情" bindinput="onTagsInput" value="{{tags}}"></input>
+    </view>
+  </view>
+
+  <!-- 歌词编辑 -->
+  <view class="card">
+    <view class="section-header">
+      <text class="section-title">歌词编辑</text>
+      <button class="btn-add" size="mini" bindtap="addLyricSection">+ 添加段落</button>
+    </view>
+
+    <view class="lyrics-list">
+      <view class="lyric-item" wx:for="{{lyrics}}" wx:key="index">
+        <view class="lyric-header">
+          <picker mode="selector" range="{{sectionTypes}}" value="{{item.typeIndex}}" bindchange="onSectionTypeChange" data-index="{{index}}">
+            <view class="section-type-badge">{{sectionTypes[item.typeIndex]}}</view>
+          </picker>
+          <text class="delete-btn" bindtap="deleteLyricSection" data-index="{{index}}">删除</text>
+        </view>
+        <textarea class="textarea" placeholder="输入歌词内容..." bindinput="onLyricInput" data-index="{{index}}" value="{{item.content}}"></textarea>
+
+        <!-- 旋律录制 -->
+        <view class="melody-section">
+          <text class="melody-label">配对旋律</text>
+          <view class="melody-actions">
+            <button wx:if="{{!item.melodyUrl}}" class="btn btn-secondary btn-sm" bindtap="recordMelody" data-index="{{index}}">
+              🎤 录制旋律
+            </button>
+            <button wx:if="{{!item.melodyUrl}}" class="btn btn-secondary btn-sm" bindtap="uploadMelody" data-index="{{index}}">
+              📁 上传音频
+            </button>
+            <view wx:else class="melody-player">
+              <text class="melody-status">✓ 已配对</text>
+              <button class="btn btn-secondary btn-sm" bindtap="playMelody" data-url="{{item.melodyUrl}}">试听</button>
+              <button class="btn btn-secondary btn-sm" bindtap="removeMelody" data-index="{{index}}">删除</button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 创作笔记 -->
+  <view class="card">
+    <text class="label">创作灵感/笔记</text>
+    <textarea class="textarea" placeholder="记录你的创作灵感、想法或备注..." bindinput="onNotesInput" value="{{notes}}"></textarea>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="actions">
+    <button class="btn btn-primary" bindtap="saveWork">保存作品</button>
+  </view>
+</view>

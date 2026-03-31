@@ -1,0 +1,18 @@
+{
+  "collection": "lyrics",
+  "description": "歌词集合，存储歌词内容",
+  "schema": {
+    "lyricId": "string - 歌词唯一标识",
+    "songId": "string - 所属歌曲ID",
+    "verseIndex": "number - 段落序号",
+    "type": "string - 类型（verse:主歌, chorus:副歌, bridge:桥段, other:其他）",
+    "content": "string - 歌词内容",
+    "melodyUrl": "string - 旋律音频URL（云存储）",
+    "duration": "number - 旋律时长（秒）",
+    "createdAt": "timestamp - 创建时间"
+  },
+  "permissions": {
+    "read": true,
+    "write": true
+  }
+}

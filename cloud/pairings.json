@@ -1,0 +1,18 @@
+{
+  "collection": "pairings",
+  "description": "配对记录集合，存储歌词旋律配对历史",
+  "schema": {
+    "pairingId": "string - 配对记录唯一标识",
+    "songId": "string - 所属歌曲ID",
+    "lyricId": "string - 歌词ID",
+    "melodyUrl": "string - 旋律音频URL",
+    "melodyDuration": "number - 旋律时长",
+    "notes": "string - 配对笔记",
+    "rating": "number - 评分（1-5）",
+    "createdAt": "timestamp - 创建时间"
+  },
+  "permissions": {
+    "read": true,
+    "write": true
+  }
+}
