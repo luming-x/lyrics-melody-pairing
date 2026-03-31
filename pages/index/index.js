@@ -82,6 +82,20 @@ Page({
     })
   },
 
+  // 跳转到歌词模板
+  navigateToTemplates() {
+    wx.navigateTo({
+      url: '/pages/templates/templates'
+    })
+  },
+
+  // 跳转到节拍器
+  navigateToMetronome() {
+    wx.navigateTo({
+      url: '/pages/metronome/metronome'
+    })
+  },
+
   // 播放作品
   playWork(e) {
     const id = e.currentTarget.dataset.id

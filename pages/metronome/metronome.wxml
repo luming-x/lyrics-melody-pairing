@@ -1,0 +1,118 @@
+<!--pages/metronome/metronome.wxml-->
+<view class="metronome-container">
+  <!-- 头部标题 -->
+  <view class="header">
+    <text class="title">节拍器</text>
+    <text class="subtitle">保持节奏，精准创作</text>
+  </view>
+
+  <!-- BPM显示 -->
+  <view class="bpm-display">
+    <text class="bpm-value">{{bpm}}</text>
+    <text class="bpm-unit">BPM</text>
+  </view>
+
+  <!-- 播放按钮 -->
+  <view class="play-button {{isPlaying ? 'playing' : ''}}" bindtap="togglePlay">
+    <text class="play-icon">{{isPlaying ? '⏸' : '▶'}}</text>
+  </view>
+
+  <!-- 当前拍数显示 -->
+  <view class="beat-indicator">
+    <view 
+      wx:for="{{beatsPerMeasure}}" 
+      wx:key="*this"
+      class="beat-dot {{item === currentBeat ? 'active' : ''}}"
+    >
+      <text>{{item}}</text>
+    </view>
+  </view>
+
+  <!-- BPM控制 -->
+  <view class="bpm-controls">
+    <button class="control-btn" bindtap="decreaseBPM">-</button>
+    <slider 
+      class="bpm-slider"
+      min="{{minBPM}}" 
+      max="{{maxBPM}}" 
+      value="{{bpm}}" 
+      bindchange="onBPMChange"
+      step="1"
+      activeColor="#667eea"
+      backgroundColor="#e0e0e0"
+    />
+    <button class="control-btn" bindtap="increaseBPM">+</button>
+  </view>
+
+  <!-- 预设BPM -->
+  <view class="presets">
+    <text class="presets-title">常用速度</text>
+    <scroll-view scroll-x class="presets-scroll">
+      <view 
+        wx:for="{{[40, 60, 80, 100, 120, 140, 160, 180, 200]}}" 
+        wx:key="*this"
+        class="preset-item {{bpm === item ? 'active' : ''}}"
+        bindtap="setPresetBPM"
+        data-bpm="{{item}}"
+      >
+        {{item}}
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 设置按钮 -->
+  <view class="settings-toggle" bindtap="toggleSettings">
+    <text>⚙️ 设置</text>
+  </view>
+
+  <!-- 设置面板 -->
+  <view class="settings-panel {{showSettings ? 'show' : ''}}">
+    <view class="settings-header">
+      <text class="settings-title">高级设置</text>
+      <text class="close-btn" bindtap="toggleSettings">✕</text>
+    </view>
+
+    <!-- 每小节拍数 -->
+    <view class="setting-item">
+      <text class="setting-label">每小节拍数</text>
+      <picker 
+        mode="selector" 
+        range="{{[2, 3, 4, 5, 6, 7, 8, 9, 10]}}" 
+        value="{{beatsPerMeasure - 2}}"
+        bindchange="onBeatsPerMeasureChange"
+      >
+        <view class="picker-value">{{beatsPerMeasure}}</view>
+      </picker>
+    </view>
+
+    <!-- 音量控制 -->
+    <view class="setting-item">
+      <text class="setting-label">音量</text>
+      <slider 
+        class="volume-slider"
+        min="0" 
+        max="1" 
+        value="{{volume}}" 
+        bindchange="onVolumeChange"
+        step="0.1"
+        activeColor="#667eea"
+        backgroundColor="#e0e0e0"
+      />
+      <text class="volume-value">{{Math.round(volume * 100)}}%</text>
+    </view>
+
+    <!-- 重置按钮 -->
+    <button class="reset-btn" bindtap="resetSettings">重置为默认</button>
+  </view>
+
+  <!-- 使用提示 -->
+  <view class="tips">
+    <text class="tips-title">💡 使用提示</text>
+    <text class="tips-text">• 滑动滑块调整BPM</text>
+    <text class="tips-text">• 点击预设快速切换常用速度</text>
+    <text class="tips-text">• 40-60 BPM: 极慢板，适合抒情</text>
+    <text class="tips-text">• 60-100 BPM: 中慢板，适合民谣</text>
+    <text class="tips-text">• 100-140 BPM: 中板，适合流行</text>
+    <text class="tips-text">• 140-180 BPM: 快板，适合摇滚</text>
+  </view>
+</view>

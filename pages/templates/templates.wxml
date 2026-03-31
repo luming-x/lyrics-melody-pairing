@@ -1,0 +1,67 @@
+<!--pages/templates/templates.wxml-->
+<view class="templates-container">
+  <!-- 头部标题 -->
+  <view class="header">
+    <text class="title">歌词模板库</text>
+    <text class="subtitle">选择模板，快速开始创作</text>
+  </view>
+
+  <!-- 分类筛选 -->
+  <view class="category-filter">
+    <scroll-view scroll-x class="category-scroll">
+      <view 
+        wx:for="{{categories}}" 
+        wx:key="*this"
+        class="category-item {{selectedCategory === item ? 'active' : ''}}"
+        bindtap="onCategoryChange"
+        data-value="{{item}}"
+      >
+        {{item}}
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 模板列表 -->
+  <view class="templates-list">
+    <view 
+      wx:for="{{filteredTemplates}}" 
+      wx:key="id"
+      class="template-card"
+    >
+      <view class="template-header">
+        <text class="template-title">{{item.title}}</text>
+        <view class="template-category">{{item.category}}</view>
+      </view>
+      
+      <text class="template-description">{{item.description}}</text>
+      
+      <view class="template-info">
+        <text class="info-item">
+          <text class="icon">📝</text>
+          {{item.lyrics.length}} 段歌词
+        </text>
+        <text class="info-item">
+          <text class="icon">👥</text>
+          {{item.usage}} 次使用
+        </text>
+      </view>
+      
+      <view class="template-actions">
+        <button 
+          class="preview-btn" 
+          bindtap="previewTemplate" 
+          data-template="{{item}}"
+        >
+          预览
+        </button>
+        <button 
+          class="use-btn" 
+          bindtap="useTemplate" 
+          data-template="{{item}}"
+        >
+          使用模板
+        </button>
+      </view>
+    </view>
+  </view>
+</view>

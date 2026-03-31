@@ -22,6 +22,14 @@
       <view class="action-icon">📚</view>
       <text class="action-text">作品库</text>
     </view>
+    <view class="action-item" bindtap="navigateToTemplates">
+      <view class="action-icon">📋</view>
+      <text class="action-text">歌词模板</text>
+    </view>
+    <view class="action-item" bindtap="navigateToMetronome">
+      <view class="action-icon">⏱️</view>
+      <text class="action-text">节拍器</text>
+    </view>
   </view>
 
   <!-- 最近作品 -->

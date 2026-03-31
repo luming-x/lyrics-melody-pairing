@@ -23,6 +23,47 @@ Page({
     if (options.id) {
       this.loadWork(options.id)
     }
+    
+    // 如果有模板数据，加载模板
+    if (options.template) {
+      this.loadTemplate(options.template)
+    }
+  },
+
+  // 加载模板
+  loadTemplate(templateData) {
+    try {
+      const templateLyrics = JSON.parse(decodeURIComponent(templateData))
+      
+      // 将模板的段落类型转换为索引
+      const sectionTypesMap = {
+        '主歌': 0,
+        '副歌': 1,
+        '桥段': 2,
+        '前奏': 3,
+        '间奏': 4,
+        '结尾': 5
+      }
+      
+      const lyrics = templateLyrics.map(lyric => ({
+        typeIndex: sectionTypesMap[lyric.type] || 0,
+        content: lyric.content,
+        melodyUrl: ''
+      }))
+      
+      this.setData({ lyrics })
+      
+      wx.showToast({
+        title: '模板加载成功',
+        icon: 'success'
+      })
+    } catch (err) {
+      console.error('模板加载失败', err)
+      wx.showToast({
+        title: '模板加载失败',
+        icon: 'none'
+      })
+    }
   },
 
   // 加载作品

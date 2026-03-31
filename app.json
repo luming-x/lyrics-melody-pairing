@@ -5,7 +5,9 @@
     "pages/create/create",
     "pages/player/player",
     "pages/library/library",
-    "pages/stats/stats"
+    "pages/stats/stats",
+    "pages/templates/templates",
+    "pages/metronome/metronome"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -36,7 +38,7 @@
         "pagePath": "pages/stats/stats",
         "text": "统计"
       }
-    ]
+    ],
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",

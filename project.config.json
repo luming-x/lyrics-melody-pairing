@@ -46,7 +46,7 @@
     "swc": false,
     "disableSWC": true
   },
-  "compileType": "miniprogram",
+  "compileType": "plugin",
   "libVersion": "2.19.4",
   "appid": "wxf38b1d1c66af8da4",
   "projectname": "歌词旋律配对",
