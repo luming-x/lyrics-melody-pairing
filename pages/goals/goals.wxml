@@ -1,0 +1,182 @@
+<!--pages/goals/goals.wxml-->
+<view class="goals-container">
+  <!-- 头部标题 -->
+  <view class="header">
+    <text class="title">创作目标</text>
+    <text class="subtitle">设定目标，持续进步</text>
+  </view>
+
+  <!-- 连续创作统计 -->
+  <view class="streak-card">
+    <view class="streak-icon">🔥</view>
+    <view class="streak-info">
+      <text class="streak-value">{{currentStreak}}</text>
+      <text class="streak-label">连续创作天数</text>
+    </view>
+    <view class="streak-best">
+      <text class="best-label">最高纪录</text>
+      <text class="best-value">{{streakDays}}天</text>
+    </view>
+  </view>
+
+  <!-- 今日进度 -->
+  <view class="progress-card">
+    <view class="progress-header">
+      <text class="progress-title">今日目标</text>
+      <text class="progress-value">{{todayCompleted}}/{{dailyGoal}}</text>
+    </view>
+    <progress 
+      class="progress-bar"
+      percent="{{calculateProgress(todayCompleted, dailyGoal)}}"
+      stroke-width="12"
+      activeColor="#667eea"
+      backgroundColor="#e0e0e0"
+      border-radius="6"
+    />
+    <text class="progress-hint">已完成 {{calculateProgress(todayCompleted, dailyGoal)}}%</text>
+  </view>
+
+  <!-- 本周进度 -->
+  <view class="progress-card">
+    <view class="progress-header">
+      <text class="progress-title">本周目标</text>
+      <text class="progress-value">{{weekCompleted}}/{{weeklyGoal}}</text>
+    </view>
+    <progress 
+      class="progress-bar"
+      percent="{{calculateProgress(weekCompleted, weeklyGoal)}}"
+      stroke-width="12"
+      activeColor="#764ba2"
+      backgroundColor="#e0e0e0"
+      border-radius="6"
+    />
+    <text class="progress-hint">已完成 {{calculateProgress(weekCompleted, weeklyGoal)}}%</text>
+  </view>
+
+  <!-- 本月进度 -->
+  <view class="progress-card">
+    <view class="progress-header">
+      <text class="progress-title">本月目标</text>
+      <text class="progress-value">{{monthCompleted}}/{{monthlyGoal}}</text>
+    </view>
+    <progress 
+      class="progress-bar"
+      percent="{{calculateProgress(monthCompleted, monthlyGoal)}}"
+      stroke-width="12"
+      activeColor="#f39c12"
+      backgroundColor="#e0e0e0"
+      border-radius="6"
+    />
+    <text class="progress-hint">已完成 {{calculateProgress(monthCompleted, monthlyGoal)}}%</text>
+  </view>
+
+  <!-- 目标设置 -->
+  <view class="settings-card">
+    <view class="settings-title">目标设置</view>
+    
+    <!-- 每日目标 -->
+    <view class="setting-item">
+      <text class="setting-label">每日目标（作品数）</text>
+      <slider 
+        class="setting-slider"
+        min="1" 
+        max="10" 
+        value="{{dailyGoal}}" 
+        bindchange="onDailyGoalChange"
+        step="1"
+        activeColor="#667eea"
+        backgroundColor="#e0e0e0"
+      />
+      <text class="setting-value">{{dailyGoal}}</text>
+    </view>
+
+    <!-- 每周目标 -->
+    <view class="setting-item">
+      <text class="setting-label">每周目标（作品数）</text>
+      <slider 
+        class="setting-slider"
+        min="1" 
+        max="30" 
+        value="{{weeklyGoal}}" 
+        bindchange="onWeeklyGoalChange"
+        step="1"
+        activeColor="#764ba2"
+        backgroundColor="#e0e0e0"
+      />
+      <text class="setting-value">{{weeklyGoal}}</text>
+    </view>
+
+    <!-- 每月目标 -->
+    <view class="setting-item">
+      <text class="setting-label">每月目标（作品数）</text>
+      <slider 
+        class="setting-slider"
+        min="1" 
+        max="50" 
+        value="{{monthlyGoal}}" 
+        bindchange="onMonthlyGoalChange"
+        step="1"
+        activeColor="#f39c12"
+        backgroundColor="#e0e0e0"
+      />
+      <text class="setting-value">{{monthlyGoal}}</text>
+    </view>
+  </view>
+
+  <!-- 提醒设置 -->
+  <view class="reminder-card">
+    <view class="reminder-header">
+      <text class="reminder-title">提醒设置</text>
+      <switch 
+        class="reminder-switch"
+        checked="{{enableReminder}}" 
+        bindchange="toggleReminder"
+        color="#667eea"
+      />
+    </view>
+    
+    <view wx:if="{{enableReminder}}" class="reminder-time">
+      <text class="reminder-label">提醒时间</text>
+      <picker 
+        mode="time" 
+        value="{{reminderTime}}" 
+        start="08:00" 
+        end="23:59"
+        bindchange="onReminderTimeChange"
+      >
+        <view class="time-picker">{{reminderTime}}</view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 成就系统 -->
+  <view class="achievements-card">
+    <view class="achievements-title">🏆 成就系统</view>
+    <view class="achievements-grid">
+      <view 
+        wx:for="{{achievements}}" 
+        wx:key="id"
+        class="achievement-item {{unlockedAchievements.includes(item.id) ? 'unlocked' : 'locked'}}"
+        bindtap="viewAchievement"
+        data-achievement="{{item}}"
+      >
+        <text class="achievement-icon">{{item.icon}}</text>
+        <text class="achievement-name">{{item.title}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 保存按钮 -->
+  <view class="save-section">
+    <button class="save-btn" bindtap="onSaveGoals">保存设置</button>
+  </view>
+
+  <!-- 使用提示 -->
+  <view class="tips">
+    <text class="tips-title">💡 使用提示</text>
+    <text class="tips-text">• 合理设定目标，保持持续创作</text>
+    <text class="tips-text">• 完成目标会自动解锁成就</text>
+    <text class="tips-text">• 连续创作可以累计连续天数</text>
+    <text class="tips-text">• 开启提醒帮助养成创作习惯</text>
+  </view>
+</view>

@@ -1,0 +1,130 @@
+<!--pages/ai-assistant/ai-assistant.wxml-->
+<view class="ai-assistant-container">
+  <!-- 头部标题 -->
+  <view class="header">
+    <text class="title">AI歌词助手</text>
+    <text class="subtitle">智能创作，灵感无限</text>
+  </view>
+
+  <!-- 输入区域 -->
+  <view class="input-section" wx:if="{{!showResult}}">
+    <view class="input-card">
+      <!-- 创作主题 -->
+      <view class="input-item">
+        <text class="input-label">创作主题 *</text>
+        <textarea 
+          class="input-textarea"
+          placeholder="请输入歌曲的主题或关键词，例如：梦想、爱情、旅行..."
+          value="{{theme}}"
+          bindinput="onThemeInput"
+          maxlength="100"
+          auto-height
+        />
+      </view>
+
+      <!-- 情感风格 -->
+      <view class="input-item">
+        <text class="input-label">情感风格 *</text>
+        <picker 
+          mode="selector" 
+          range="{{emotions}}" 
+          bindchange="onEmotionChange"
+        >
+          <view class="picker-value {{emotion ? '' : 'placeholder'}}">
+            {{emotion || '请选择情感风格'}}
+          </view>
+        </picker>
+      </view>
+
+      <!-- 音乐风格 -->
+      <view class="input-item">
+        <text class="input-label">音乐风格 *</text>
+        <picker 
+          mode="selector" 
+          range="{{styles}}" 
+          bindchange="onStyleChange"
+        >
+          <view class="picker-value {{style ? '' : 'placeholder'}}">
+            {{style || '请选择音乐风格'}}
+          </view>
+        </picker>
+      </view>
+
+      <!-- 歌词长度 -->
+      <view class="input-item">
+        <text class="input-label">歌词长度</text>
+        <picker 
+          mode="selector" 
+          range="{{lengths}}" 
+          range-key="label"
+          bindchange="onLengthChange"
+        >
+          <view class="picker-value">
+            {{lengths.find(l => l.value === length).label}}
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="action-buttons">
+      <button class="clear-btn" bindtap="clearInput">清空</button>
+      <button 
+        class="generate-btn {{generating ? 'generating' : ''}}" 
+        bindtap="generateLyrics"
+      >
+        {{generating ? '生成中...' : '开始创作'}}
+      </button>
+    </view>
+  </view>
+
+  <!-- 生成结果 -->
+  <view class="result-section" wx:if="{{showResult}}">
+    <view class="result-header">
+      <text class="result-title">生成结果</text>
+      <view class="result-tags">
+        <text class="tag">{{emotion}}</text>
+        <text class="tag">{{style}}</text>
+      </view>
+    </view>
+
+    <view class="lyrics-content">
+      <view 
+        wx:for="{{generatedLyrics}}" 
+        wx:key="index"
+        class="lyric-section"
+      >
+        <text class="section-type">{{item.type}}</text>
+        <text class="section-content">{{item.content}}</text>
+      </view>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="result-actions">
+      <button class="action-btn copy-btn" bindtap="copyLyrics">
+        📋 复制
+      </button>
+      <button class="action-btn regenerate-btn" bindtap="regenerate">
+        🔄 重新生成
+      </button>
+      <button class="action-btn use-btn" bindtap="useGeneratedLyrics">
+        ✏️ 使用创作
+      </button>
+    </view>
+  </view>
+
+  <!-- 历史记录入口 -->
+  <view class="history-entry" bindtap="viewHistory">
+    <text class="history-text">📜 查看历史记录</text>
+    <text class="history-count">({{history.length}}条)</text>
+  </view>
+
+  <!-- 使用提示 -->
+  <view class="tips">
+    <text class="tips-title">💡 使用提示</text>
+    <text class="tips-text">• 输入明确的主题可以获得更精准的歌词</text>
+    <text class="tips-text">• 情感和风格会显著影响歌词的调性</text>
+    <text class="tips-text">• 可以多次生成，选择最满意的版本</text>
+    <text class="tips-text">• 生成的歌词可以直接用于创作或作为灵感</text>
+  </view>
+</view>

@@ -96,6 +96,20 @@ Page({
     })
   },
 
+  // 跳转到创作目标
+  navigateToGoals() {
+    wx.navigateTo({
+      url: '/pages/goals/goals'
+    })
+  },
+
+  // 跳转到AI助手
+  navigateToAI() {
+    wx.navigateTo({
+      url: '/pages/ai-assistant/ai-assistant'
+    })
+  },
+
   // 播放作品
   playWork(e) {
     const id = e.currentTarget.dataset.id

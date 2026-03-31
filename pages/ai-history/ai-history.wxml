@@ -1,0 +1,75 @@
+<!--pages/ai-history/ai-history.wxml-->
+<view class="history-container">
+  <!-- 头部标题 -->
+  <view class="header">
+    <text class="title">AI创作历史</text>
+    <text class="subtitle">共 {{history.length}} 条记录</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view wx:if="{{history.length === 0}}" class="empty-state">
+    <text class="empty-icon">📜</text>
+    <text class="empty-text">暂无历史记录</text>
+    <text class="empty-hint">开始使用AI助手创作吧！</text>
+  </view>
+
+  <!-- 历史记录列表 -->
+  <view wx:else class="history-list">
+    <view 
+      wx:for="{{history}}" 
+      wx:key="createdAt"
+      class="history-card"
+    >
+      <view class="card-header">
+        <view class="card-tags">
+          <text class="tag emotion">{{item.emotion}}</text>
+          <text class="tag style">{{item.style}}</text>
+        </view>
+        <text class="card-time">{{formatTime(item.createdAt)}}</text>
+      </view>
+      
+      <view class="card-content">
+        <text class="card-theme">主题：{{item.theme}}</text>
+        <text class="card-lyrics-preview">
+          {{item.lyrics[0].type}}: {{item.lyrics[0].content}}
+        </text>
+      </view>
+      
+      <view class="card-actions">
+        <button 
+          class="action-btn view-btn" 
+          bindtap="viewDetail" 
+          data-record="{{item}}"
+        >
+          查看
+        </button>
+        <button 
+          class="action-btn copy-btn" 
+          bindtap="copyLyrics" 
+          data-record="{{item}}"
+        >
+          复制
+        </button>
+        <button 
+          class="action-btn use-btn" 
+          bindtap="useRecord" 
+          data-record="{{item}}"
+        >
+          使用
+        </button>
+        <button 
+          class="action-btn delete-btn" 
+          bindtap="deleteRecord" 
+          data-index="{{index}}"
+        >
+          删除
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 清空按钮 -->
+  <view wx:if="{{history.length > 0}}" class="clear-section">
+    <button class="clear-all-btn" bindtap="clearAll">清空所有记录</button>
+  </view>
+</view>

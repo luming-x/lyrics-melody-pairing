@@ -1,0 +1,341 @@
+/* pages/goals/goals.wxss */
+.goals-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding-bottom: 80rpx;
+}
+
+.header {
+  padding: 60rpx 40rpx 40rpx;
+  text-align: center;
+}
+
+.title {
+  display: block;
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 20rpx;
+}
+
+.subtitle {
+  display: block;
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* 连续创作卡片 */
+.streak-card {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin: 0 40rpx 30rpx;
+  display: flex;
+  align-items: center;
+  backdrop-filter: blur(10rpx);
+}
+
+.streak-icon {
+  font-size: 80rpx;
+  margin-right: 30rpx;
+}
+
+.streak-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.streak-value {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.streak-label {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 8rpx;
+}
+
+.streak-best {
+  text-align: right;
+}
+
+.best-label {
+  display: block;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.best-value {
+  display: block;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #ff6b6b;
+}
+
+/* 进度卡片 */
+.progress-card {
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin: 0 40rpx 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.1);
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.progress-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.progress-value {
+  font-size: 28rpx;
+  color: #667eea;
+  font-weight: bold;
+}
+
+.progress-bar {
+  margin-bottom: 16rpx;
+}
+
+.progress-hint {
+  font-size: 24rpx;
+  color: #95a5a6;
+}
+
+/* 设置卡片 */
+.settings-card {
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin: 0 40rpx 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.1);
+}
+
+.settings-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 30rpx;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #ecf0f1;
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.setting-label {
+  width: 200rpx;
+  font-size: 28rpx;
+  color: #2c3e50;
+}
+
+.setting-slider {
+  flex: 1;
+  margin: 0 20rpx;
+}
+
+.setting-value {
+  width: 60rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #667eea;
+  font-weight: bold;
+}
+
+/* 提醒设置 */
+.reminder-card {
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin: 0 40rpx 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.1);
+}
+
+.reminder-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.reminder-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.reminder-time {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20rpx;
+}
+
+.reminder-label {
+  font-size: 28rpx;
+  color: #2c3e50;
+}
+
+.time-picker {
+  padding: 16rpx 32rpx;
+  background: #f5f5f5;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  color: #667eea;
+  font-weight: bold;
+}
+
+/* 成就系统 */
+.achievements-card {
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin: 0 40rpx 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.1);
+}
+
+.achievements-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 30rpx;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20rpx;
+}
+
+.achievement-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx 10rpx;
+  background: #f5f5f5;
+  border-radius: 12rpx;
+  transition: all 0.3s;
+}
+
+.achievement-item.unlocked {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.achievement-item.locked {
+  opacity: 0.5;
+}
+
+.achievement-icon {
+  font-size: 48rpx;
+  margin-bottom: 10rpx;
+}
+
+.achievement-name {
+  font-size: 20rpx;
+  color: #2c3e50;
+  text-align: center;
+}
+
+.achievement-item.unlocked .achievement-name {
+  color: #ffffff;
+}
+
+/* 保存按钮 */
+.save-section {
+  padding: 0 40rpx 30rpx;
+}
+
+.save-btn {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0 8rpx 24rpx rgba(102, 126, 234, 0.3);
+}
+
+/* 使用提示 */
+.tips {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin: 0 40rpx;
+}
+
+.tips-title {
+  display: block;
+  font-size: 28rpx;
+  color: #ffffff;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.tips-text {
+  display: block;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 2;
+  margin-bottom: 10rpx;
+}
+
+/* 深色模式 */
+page[data-theme="dark"] .progress-card,
+page[data-theme="dark"] .settings-card,
+page[data-theme="dark"] .reminder-card,
+page[data-theme="dark"] .achievements-card {
+  background: #1a1a2e;
+}
+
+page[data-theme="dark"] .progress-title,
+page[data-theme="dark"] .settings-title,
+page[data-theme="dark"] .reminder-title,
+page[data-theme="dark"] .achievements-title,
+page[data-theme="dark"] .setting-label,
+page[data-theme="dark"] .reminder-label {
+  color: #e0e0e0;
+}
+
+page[data-theme="dark"] .progress-hint {
+  color: #808080;
+}
+
+page[data-theme="dark"] .setting-item {
+  border-color: #2a2a4e;
+}
+
+page[data-theme="dark"] .achievement-item {
+  background: #2a2a4e;
+}
+
+page[data-theme="dark"] .achievement-name {
+  color: #a0a0a0;
+}
+
+page[data-theme="dark"] .time-picker {
+  background: #2a2a4e;
+  color: #667eea;
+}
+
+page[data-theme="dark"] .tips {
+  background: rgba(0, 0, 0, 0.2);
+}
