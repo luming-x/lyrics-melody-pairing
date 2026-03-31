@@ -54,7 +54,32 @@
   <!-- 底部操作栏 -->
   <view class="bottom-actions">
     <button class="btn btn-secondary" bindtap="editWork">编辑作品</button>
+    <button class="btn btn-primary" bindtap="showExportMenu">导出</button>
     <button class="btn btn-success" bindtap="shareWork">分享</button>
+  </view>
+</view>
+
+<!-- 导出菜单 -->
+<view class="export-modal" wx:if="{{showExport}}" bindtap="hideExport">
+  <view class="export-menu" catchtap>
+    <view class="export-menu-header">
+      <text class="export-menu-title">导出作品</text>
+      <text class="export-menu-close" bindtap="hideExport">×</text>
+    </view>
+    <view class="export-menu-items">
+      <view class="export-menu-item" bindtap="exportTxt">
+        <text class="export-icon">📄</text>
+        <text class="export-text">导出为 TXT</text>
+      </view>
+      <view class="export-menu-item" bindtap="exportJson">
+        <text class="export-icon">💾</text>
+        <text class="export-text">导出为 JSON</text>
+      </view>
+      <view class="export-menu-item" bindtap="copyShareText">
+        <text class="export-icon">📋</text>
+        <text class="export-text">复制分享文本</text>
+      </view>
+    </view>
   </view>
 </view>
 

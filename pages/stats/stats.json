@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "首页",
+  "navigationBarTitleText": "创作统计",
   "usingComponents": {
     "theme-switcher": "/components/theme-switcher/theme-switcher"
   }

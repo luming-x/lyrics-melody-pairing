@@ -2,6 +2,13 @@
 page {
   background-color: #f5f5f5;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  transition: background-color 0.3s;
+}
+
+/* 深色模式 */
+page[data-theme="dark"] {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
 }
 
 .container {
@@ -17,6 +24,11 @@ page {
   padding: 30rpx;
   margin-bottom: 20rpx;
   box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.08);
+}
+
+page[data-theme="dark"] .card {
+  background: #2d2d2d;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.3);
 }
 
 /* 按钮样式 */
@@ -38,6 +50,11 @@ page {
   color: #2c3e50;
 }
 
+page[data-theme="dark"] .btn-secondary {
+  background: #3d3d3d;
+  color: #e0e0e0;
+}
+
 .btn-success {
   background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
   color: #ffffff;
@@ -51,6 +68,13 @@ page {
   padding: 24rpx;
   font-size: 28rpx;
   transition: all 0.3s;
+  color: #2c3e50;
+}
+
+page[data-theme="dark"] .input-box {
+  background: #2d2d2d;
+  border-color: #404040;
+  color: #e0e0e0;
 }
 
 .input-box:focus {
@@ -68,6 +92,13 @@ page {
   min-height: 300rpx;
   width: 100%;
   box-sizing: border-box;
+  color: #2c3e50;
+}
+
+page[data-theme="dark"] .textarea {
+  background: #2d2d2d;
+  border-color: #404040;
+  color: #e0e0e0;
 }
 
 /* 标签样式 */
@@ -85,9 +116,19 @@ page {
   color: #1976d2;
 }
 
+page[data-theme="dark"] .tag-primary {
+  background: #1a237e;
+  color: #90caf9;
+}
+
 .tag-secondary {
   background: #f3e5f5;
   color: #7b1fa2;
+}
+
+page[data-theme="dark"] .tag-secondary {
+  background: #4a148c;
+  color: #ce93d8;
 }
 
 .tag-success {
@@ -95,11 +136,20 @@ page {
   color: #388e3c;
 }
 
+page[data-theme="dark"] .tag-success {
+  background: #1b5e20;
+  color: #a5d6a7;
+}
+
 /* 分割线 */
 .divider {
   height: 1rpx;
   background: #e0e0e0;
   margin: 30rpx 0;
+}
+
+page[data-theme="dark"] .divider {
+  background: #404040;
 }
 
 /* 空状态 */
@@ -112,6 +162,10 @@ page {
   color: #95a5a6;
 }
 
+page[data-theme="dark"] .empty-state {
+  color: #757575;
+}
+
 .empty-icon {
   font-size: 100rpx;
   margin-bottom: 20rpx;
@@ -121,4 +175,28 @@ page {
 .empty-text {
   font-size: 28rpx;
   margin-bottom: 40rpx;
+}
+
+/* 主题切换按钮 */
+.theme-switcher {
+  position: fixed;
+  top: 20rpx;
+  right: 20rpx;
+  z-index: 1000;
+  padding: 16rpx;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+
+page[data-theme="dark"] .theme-switcher {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.theme-switcher:active {
+  transform: scale(0.9);
+}
+
+.theme-icon {
+  font-size: 40rpx;
 }

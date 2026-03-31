@@ -1,0 +1,30 @@
+/* 主题切换组件样式 */
+.theme-switcher {
+  position: fixed;
+  top: 20rpx;
+  right: 20rpx;
+  z-index: 1000;
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  transition: all 0.3s;
+  backdrop-filter: blur(10rpx);
+}
+
+theme-switcher:active {
+  transform: scale(0.9);
+}
+
+.theme-icon {
+  font-size: 36rpx;
+  line-height: 1;
+}
+
+/* 深色模式 */
+page[data-theme="dark"] .theme-switcher {
+  background: rgba(255, 255, 255, 0.1);
+}

@@ -1,5 +1,6 @@
 // pages/player/player.js
 const app = getApp()
+const ExportUtil = require('../../utils/export.js')
 
 Page({
   data: {
@@ -8,7 +9,8 @@ Page({
     currentIndex: 0,
     currentSectionId: 'section-0',
     isPlaying: false,
-    audioContext: null
+    audioContext: null,
+    showExport: false
   },
 
   onLoad(options) {
@@ -178,5 +180,33 @@ Page({
     setTimeout(() => {
       wx.stopPullDownRefresh()
     }, 1000)
+  },
+
+  // 显示导出菜单
+  showExportMenu() {
+    this.setData({ showExport: true })
+  },
+
+  // 隐藏导出菜单
+  hideExport() {
+    this.setData({ showExport: false })
+  },
+
+  // 导出为 TXT
+  exportTxt() {
+    this.hideExport()
+    ExportUtil.saveAsTxt(this.data.work)
+  },
+
+  // 导出为 JSON
+  exportJson() {
+    this.hideExport()
+    ExportUtil.saveAsJson(this.data.work)
+  },
+
+  // 复制分享文本
+  copyShareText() {
+    this.hideExport()
+    ExportUtil.copyShareText(this.data.work)
   }
 })

@@ -1,0 +1,231 @@
+/* 统计页面样式 */
+.stats-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+  padding: 0 20rpx;
+}
+
+.stats-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+page[data-theme="dark"] .stats-title {
+  color: #e0e0e0;
+}
+
+.refresh-btn {
+  font-size: 28rpx;
+  color: #667eea;
+}
+
+/* 统计卡片网格 */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 20rpx;
+  padding: 30rpx 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.08);
+  transition: all 0.3s;
+}
+
+page[data-theme="dark"] .stat-card {
+  background: #2d2d2d;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.3);
+}
+
+.stat-icon {
+  font-size: 48rpx;
+  margin-bottom: 12rpx;
+}
+
+.stat-value {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #667eea;
+  margin-bottom: 8rpx;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: #7f8c8d;
+}
+
+page[data-theme="dark"] .stat-label {
+  color: #757575;
+}
+
+/* 区块卡片 */
+.section-card {
+  background: white;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.08);
+}
+
+page[data-theme="dark"] .section-card {
+  background: #2d2d2d;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.3);
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 24rpx;
+}
+
+page[data-theme="dark"] .section-title {
+  color: #e0e0e0;
+}
+
+/* 平均统计 */
+.avg-stats {
+  display: flex;
+  justify-content: space-around;
+}
+
+.avg-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avg-value {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #667eea;
+  margin-bottom: 8rpx;
+}
+
+.avg-label {
+  font-size: 24rpx;
+  color: #7f8c8d;
+}
+
+page[data-theme="dark"] .avg-label {
+  color: #757575;
+}
+
+/* 类型统计 */
+.type-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.type-bar-item {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.type-name {
+  width: 100rpx;
+  font-size: 26rpx;
+  color: #2c3e50;
+}
+
+page[data-theme="dark"] .type-name {
+  color: #e0e0e0;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 16rpx;
+  background: #ecf0f1;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+page[data-theme="dark"] .progress-bar {
+  background: #404040;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 8rpx;
+  transition: width 0.5s;
+}
+
+.type-count {
+  width: 60rpx;
+  text-align: right;
+  font-size: 26rpx;
+  color: #667eea;
+  font-weight: bold;
+}
+
+/* 活动列表 */
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.activity-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #ecf0f1;
+}
+
+page[data-theme="dark"] .activity-item {
+  border-bottom-color: #404040;
+}
+
+.activity-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.activity-title {
+  font-size: 28rpx;
+  color: #2c3e50;
+}
+
+page[data-theme="dark"] .activity-title {
+  color: #e0e0e0;
+}
+
+.activity-action {
+  font-size: 24rpx;
+  color: #7f8c8d;
+}
+
+page[data-theme="dark"] .activity-action {
+  color: #757575;
+}
+
+.activity-time {
+  font-size: 24rpx;
+  color: #95a5a6;
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 40rpx 0;
+  color: #95a5a6;
+  font-size: 26rpx;
+}
+
+page[data-theme="dark"] .empty-state {
+  color: #757575;
+}

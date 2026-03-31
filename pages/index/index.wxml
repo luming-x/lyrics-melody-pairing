@@ -1,5 +1,8 @@
 <!-- 首页 -->
 <view class="container">
+  <!-- 主题切换按钮 -->
+  <theme-switcher />
+
   <!-- 欢迎区域 -->
   <view class="welcome-section">
     <view class="logo-placeholder">

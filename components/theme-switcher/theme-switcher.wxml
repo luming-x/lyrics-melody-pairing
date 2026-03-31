@@ -1,0 +1,4 @@
+<!-- 主题切换按钮 -->
+<view class="theme-switcher" bindtap="switchTheme">
+  <text class="theme-icon">{{currentTheme === 'light' ? '🌙' : '☀️'}}</text>
+</view>

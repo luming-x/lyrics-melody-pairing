@@ -1,0 +1,110 @@
+<!-- 统计页面 -->
+<view class="container">
+  <!-- 主题切换按钮 -->
+  <theme-switcher />
+
+  <!-- 统计卡片 -->
+  <view class="stats-header">
+    <text class="stats-title">创作统计</text>
+    <text class="refresh-btn" bindtap="refreshStats">🔄 刷新</text>
+  </view>
+
+  <!-- 主要统计 -->
+  <view class="stats-grid">
+    <view class="stat-card">
+      <view class="stat-icon">📚</view>
+      <text class="stat-value">{{totalWorks}}</text>
+      <text class="stat-label">作品数</text>
+    </view>
+    <view class="stat-card">
+      <view class="stat-icon">📝</view>
+      <text class="stat-value">{{totalLyrics}}</text>
+      <text class="stat-label">歌词段落数</text>
+    </view>
+    <view class="stat-card">
+      <view class="stat-icon">🎵</view>
+      <text class="stat-value">{{totalMelodies}}</text>
+      <text class="stat-label">旋律数</text>
+    </view>
+    <view class="stat-card">
+      <view class="stat-icon">📅</view>
+      <text class="stat-value">{{activeDays}}</text>
+      <text class="stat-label">活跃天数</text>
+    </view>
+  </view>
+
+  <!-- 平均统计 -->
+  <view class="section-card">
+    <view class="section-title">平均数据</view>
+    <view class="avg-stats">
+      <view class="avg-item">
+        <text class="avg-value">{{avgLyricsPerWork}}</text>
+        <text class="avg-label">平均歌词段落数</text>
+      </view>
+      <view class="avg-item">
+        <text class="avg-value">{{avgMelodiesPerWork}}</text>
+        <text class="avg-label">平均旋律数</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 歌词类型分布 -->
+  <view class="section-card">
+    <view class="section-title">歌词类型分布</view>
+    <view class="type-stats">
+      <view class="type-bar">
+        <view class="type-bar-item">
+          <text class="type-name">主歌</text>
+          <view class="progress-bar">
+            <view class="progress-fill" style="width: {{totalLyrics > 0 ? (statsByType.verse / totalLyrics * 100) + '%' : '0%'}}"></view>
+          </view>
+          <text class="type-count">{{statsByType.verse}}</text>
+        </view>
+      </view>
+      <view class="type-bar">
+        <view class="type-bar-item">
+          <text class="type-name">副歌</text>
+          <view class="progress-bar">
+            <view class="progress-fill" style="width: {{totalLyrics > 0 ? (statsByType.chorus / totalLyrics * 100) + '%' : '0%'}}"></view>
+          </view>
+          <text class="type-count">{{statsByType.chorus}}</text>
+        </view>
+      </view>
+      <view class="type-bar">
+        <view class="type-bar-item">
+          <text class="type-name">桥段</text>
+          <view class="progress-bar">
+            <view class="progress-fill" style="width: {{totalLyrics > 0 ? (statsByType.bridge / totalLyrics * 100) + '%' : '0%'}}"></view>
+          </view>
+          <text class="type-count">{{statsByType.bridge}}</text>
+        </view>
+      </view>
+      <view class="type-bar">
+        <view class="type-bar-item">
+          <text class="type-name">其他</text>
+          <view class="progress-bar">
+            <view class="progress-fill" style="width: {{totalLyrics > 0 ? (statsByType.other / totalLyrics * 100) + '%' : '0%'}}"></view>
+          </view>
+          <text class="type-count">{{statsByType.other}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 最近活动 -->
+  <view class="section-card">
+    <view class="section-title">最近活动</view>
+    <view class="activity-list">
+      <view class="activity-item" wx:for="{{recentActivity}}" wx:key="title">
+        <view class="activity-info">
+          <text class="activity-title">{{item.title}}</text>
+          <text class="activity-action">{{item.action}}</text>
+        </view>
+        <text class="activity-time">{{item.time}}</text>
+      </view>
+      <view wx:if="{{recentActivity.length === 0}}" class="empty-state">
+        <text>暂无活动记录</text>
+      </view>
+    </view>
+  </view>
+</view>

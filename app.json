@@ -4,7 +4,8 @@
     "pages/lyrics/lyrics",
     "pages/create/create",
     "pages/player/player",
-    "pages/library/library"
+    "pages/library/library",
+    "pages/stats/stats"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -30,6 +31,10 @@
       {
         "pagePath": "pages/create/create",
         "text": "创作"
+      },
+      {
+        "pagePath": "pages/stats/stats",
+        "text": "统计"
       }
     ]
   },

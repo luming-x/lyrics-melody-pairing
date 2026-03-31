@@ -3,15 +3,24 @@ const app = getApp()
 
 Page({
   data: {
-    recentWorks: []
+    recentWorks: [],
+    theme: 'light'
   },
 
   onLoad() {
     this.loadRecentWorks()
+    this.setData({
+      theme: app.globalData.theme
+    })
   },
 
   onShow() {
     this.loadRecentWorks()
+  },
+
+  // 主题变化回调
+  onThemeChange(theme) {
+    this.setData({ theme })
   },
 
   // 加载最近作品
