@@ -1,94 +1,314 @@
-# GitHub CLI 登录指南
+# GitHub CLI (gh) 安装与使用指南
 
-由于 GitHub API 访问受限，需要使用手动方式创建 Token 并登录。
+## 📋 什么是 GitHub CLI？
 
-## 步骤 1：创建 GitHub Personal Access Token
+GitHub CLI 是一个开源工具，让您可以在命令行中直接与 GitHub 进行交互，无需切换到浏览器。
 
-1. 访问 GitHub Token 设置页面：
-   https://github.com/settings/tokens
+## 🚀 安装步骤
 
-2. 点击 "Generate new token" → "Generate new token (classic)"
-
-3. 填写 Token 信息：
-   - **Note（备注）**：`GitHub CLI for Mac`
-   - **Expiration（过期时间）**：选择 `90 days` 或 `No expiration`
-   - **Select scopes（权限范围）**，勾选以下选项：
-     - ✅ `repo` - 完整的仓库访问权限
-     - ✅ `workflow` - GitHub Actions 工作流权限
-     - ✅ `read:org` - 读取组织信息
-     - ✅ `user` - 用户信息
-
-4. 点击 "Generate token" 生成 Token
-
-5. **重要**：复制生成的 Token（以 `ghp_` 开头）
-   - 注意：Token 只显示一次，请立即复制保存
-
-## 步骤 2：使用 Token 登录 GitHub CLI
-
-在终端中执行以下命令：
+### 方法1: 使用安装脚本（推荐）
 
 ```bash
-# 使用 Token 登录（替换 YOUR_TOKEN 为你的实际 Token）
-echo "YOUR_TOKEN" | gh auth login --with-token
+# 1. 运行安装脚本
+sh GitHub_CLI_安装脚本.sh
+
+# 2. 运行登录脚本
+sh GitHub_CLI_登录脚本.sh
 ```
 
-示例：
+### 方法2: 手动安装
+
 ```bash
-echo "ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" | gh auth login --with-token
+# 1. 安装 Homebrew（如果未安装）
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# 2. 安装 GitHub CLI
+brew install gh
+
+# 3. 配置 Homebrew（Apple Silicon Mac）
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+source ~/.zprofile
+
+# 4. 登录
+gh auth login
 ```
 
-## 步骤 3：验证登录
+## 🔑 登录步骤
+
+1. **运行登录命令**
+   ```bash
+   gh auth login
+   ```
+
+2. **选择 GitHub.com**
+   ```
+   What account do you want to log into?
+   > GitHub.com
+     GitHub Enterprise Server
+   ```
+
+3. **选择 HTTPS 协议**
+   ```
+   What is your preferred protocol for Git operations?
+   > HTTPS
+     SSH
+   ```
+
+4. **上传 SSH 密钥**
+   ```
+   Authenticate Git with your GitHub credentials?
+   > Yes
+     No
+   ```
+
+5. **浏览器授权**
+   - 系统会自动打开浏览器
+   - 点击"Authorize github-cli"
+   - 等待授权完成
+
+6. **完成登录**
+   - 返回终端，看到"Logged in as XXX"即为成功
+
+## 📝 常用命令
+
+### 仓库操作
 
 ```bash
-# 检查登录状态
-gh auth status
+# 查看当前仓库
+gh repo view
 
-# 查看当前用户信息
-gh auth status --show-token
-```
-
-## 步骤 4：使用 GitHub CLI
-
-登录成功后，可以使用以下命令：
-
-```bash
-# 列出你的仓库
+# 查看所有仓库
 gh repo list
 
 # 创建新仓库
 gh repo create my-repo --public
 
 # 克隆仓库
-gh repo clone username/repo
+gh repo clone username/repo-name
 
-# 查看 Issues
-gh issue list
+# 删除仓库
+gh repo delete repo-name
 ```
 
-## 如果遇到问题
+### 问题 (Issues)
 
-### 问题 1：Token 无效
-- 检查 Token 是否完整复制（包括 `ghp_` 前缀）
-- 确认 Token 没有过期
-- 确认 Token 有足够的权限
+```bash
+# 查看问题列表
+gh issue list
 
-### 问题 2：权限不足
-- 重新创建 Token，确保勾选了 `repo` 权限
+# 创建问题
+gh issue create --title "Bug报告" --body "问题描述"
 
-### 问题 3：登录失败
-- 运行 `gh auth logout` 清除旧配置
-- 重新使用 Token 登录
+# 查看问题详情
+gh issue view 123
 
-## 安全提醒
+# 关闭问题
+gh issue close 123
+```
 
-- ⚠️ 不要将 Token 分享给他人
-- ⚠️ 不要在公开的代码仓库中提交 Token
-- ⚠️ 定期更新 Token（建议每 90 天）
-- ⚠️ 如果 Token 泄露，立即在 GitHub 中撤销
+### 拉取请求 (Pull Requests)
+
+```bash
+# 查看 PR 列表
+gh pr list
+
+# 创建 PR
+gh pr create --title "新功能" --body "PR描述"
+
+# 查看当前分支的 PR
+gh pr view
+
+# 合并 PR
+gh pr merge
+```
+
+### 发布版本 (Releases)
+
+```bash
+# 查看发布版本
+gh release list
+
+# 创建发布版本
+gh release create v1.0.0 --notes "首个正式版本"
+
+# 查看版本详情
+gh release view v1.0.0
+```
+
+### 代码管理
+
+```bash
+# 查看文件
+gh repo view --json name,description
+
+# 查看代码
+gh api /repos/owner/repo/readme
+
+# 查看分支
+gh api /repos/owner/repo/branches
+```
+
+## 🎯 项目相关命令
+
+对于您的"歌词旋律配对工具"项目：
+
+```bash
+# 查看项目信息
+gh repo view lyrics-melody-pairing
+
+# 查看项目统计
+gh repo view --json name,stargazersCount,forksCount,openIssuesCount
+
+# 创建新版本
+gh release create v1.4.0 --notes "新增音乐创作工具功能"
+
+# 查看问题
+gh issue list --repo lyrics-melody-pairing
+
+# 查看 Pull Requests
+gh pr list --repo lyrics-melody-pairing
+```
+
+## 🔧 配置选项
+
+```bash
+# 查看当前配置
+gh config list
+
+# 设置默认编辑器
+gh config set editor vim
+
+# 设置 Git 协议
+gh config set git_protocol ssh
+
+# 设置浏览器
+gh config set browser firefox
+```
+
+## 📊 查看状态
+
+```bash
+# 查看登录状态
+gh auth status
+
+# 查看版本
+gh --version
+
+# 查看帮助
+gh --help
+
+# 查看特定命令帮助
+gh repo --help
+```
+
+## 🐛 常见问题
+
+### 1. 登录失败
+
+**问题**: `gh auth login` 无法完成
+
+**解决方案**:
+- 检查网络连接
+- 确认 GitHub 账户状态
+- 尝试使用 SSH 协议
+- 检查是否被防火墙阻止
+
+### 2. 命令未找到
+
+**问题**: `command not found: gh`
+
+**解决方案**:
+```bash
+# 重新安装
+brew reinstall gh
+
+# 或添加到 PATH
+export PATH="/opt/homebrew/bin:$PATH"
+echo 'export PATH="/opt/homebrew/bin:$PATH"' >> ~/.zprofile
+```
+
+### 3. 认证失败
+
+**问题**: `Authentication failed`
+
+**解决方案**:
+```bash
+# 重新登录
+gh auth logout
+gh auth login
+
+# 或清除缓存
+gh auth setup
+```
+
+### 4. 浏览器未打开
+
+**问题**: 授权页面未自动打开
+
+**解决方案**:
+```bash
+# 复制授权链接手动打开
+# 终端会显示一个 URL，复制后在浏览器中打开
+```
+
+## 💡 高级用法
+
+### 自动化脚本
+
+```bash
+# 创建并推送新版本
+#!/bin/bash
+VERSION=$1
+gh release create $VERSION --notes "版本 $VERSION"
+git push origin main
+```
+
+### 批量操作
+
+```bash
+# 批量关闭所有问题
+gh issue list --state open | jq -r '.[].number' | xargs -I {} gh issue close {}
+
+# 批量创建里程碑
+for version in v1.5.0 v1.6.0 v1.7.0; do
+    gh api repos/owner/repo/milestones -f title=$version
+done
+```
+
+### 与 Git 集成
+
+```bash
+# 创建 PR 并关联问题
+git checkout -b feature/new-feature
+git commit -am "Add new feature"
+git push origin feature/new-feature
+gh pr create --title "Add new feature" --body "Fixes #123"
+
+# 合并后自动关闭问题
+gh pr merge --squash
+```
+
+## 📚 更多资源
+
+- **官方文档**: https://cli.github.com/manual/
+- **GitHub 社区**: https://github.com/cli/cli/discussions
+- **问题反馈**: https://github.com/cli/cli/issues
+
+## 🎉 开始使用
+
+```bash
+# 1. 安装
+sh GitHub_CLI_安装脚本.sh
+
+# 2. 登录
+sh GitHub_CLI_登录脚本.sh
+
+# 3. 测试
+gh repo view
+
+# 4. 开始使用！
+```
 
 ---
 
-**准备好 Token 后，运行以下命令登录：**
-```bash
-echo "你的Token" | gh auth login --with-token
-```
+**现在您可以在命令行中高效地管理您的 GitHub 项目了！** 🚀
