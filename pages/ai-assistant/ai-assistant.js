@@ -13,6 +13,7 @@ Page({
     styles: ['流行', '民谣', '摇滚', '电子', '说唱', '抒情'],
     // 歌词长度
     length: 'medium',
+    lengthLabel: '中等',
     lengths: [
       { value: 'short', label: '简短', sections: 2 },
       { value: 'medium', label: '中等', sections: 4 },
@@ -52,7 +53,10 @@ Page({
   // 长度选择
   onLengthChange(e) {
     const index = e.detail.value
-    this.setData({ length: this.data.lengths[index].value })
+    this.setData({
+      length: this.data.lengths[index].value,
+      lengthLabel: this.data.lengths[index].label
+    })
   },
 
   // 生成歌词

@@ -53,14 +53,14 @@
       <!-- 歌词长度 -->
       <view class="input-item">
         <text class="input-label">歌词长度</text>
-        <picker 
-          mode="selector" 
-          range="{{lengths}}" 
+        <picker
+          mode="selector"
+          range="{{lengths}}"
           range-key="label"
           bindchange="onLengthChange"
         >
           <view class="picker-value">
-            {{lengths.find(l => l.value === length).label}}
+            {{lengthLabel}}
           </view>
         </picker>
       </view>
