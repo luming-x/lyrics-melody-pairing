@@ -45,7 +45,7 @@
         "pagePath": "pages/stats/stats",
         "text": "统计"
       }
-    ],
+    ]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",
