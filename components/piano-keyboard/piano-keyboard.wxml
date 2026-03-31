@@ -1,0 +1,33 @@
+<!-- 钢琴虚拟键盘组件 -->
+<view class="piano-keyboard">
+  <!-- 黑键层 -->
+  <view class="black-keys-layer">
+    <view 
+      wx:for="{{blackKeys}}" 
+      wx:key="index"
+      class="black-key {{pressedKeys.includes(item.note) ? 'pressed' : ''}}"
+      style="left: {{item.position * (100 / (whiteKeys.length / (endOctave - startOctave + 1)))}}%"
+      data-frequency="{{item.frequency}}"
+      data-note="{{item.note}}"
+      bindtouchstart="onBlackKeyDown"
+      bindtouchend="onBlackKeyUp"
+    >
+      <text class="key-label">{{item.note}}</text>
+    </view>
+  </view>
+
+  <!-- 白键层 -->
+  <view class="white-keys-layer">
+    <view 
+      wx:for="{{whiteKeys}}" 
+      wx:key="index"
+      class="white-key {{pressedKeys.includes(item.note) ? 'pressed' : ''}}"
+      data-frequency="{{item.frequency}}"
+      data-note="{{item.note}}"
+      bindtouchstart="onWhiteKeyDown"
+      bindtouchend="onWhiteKeyUp"
+    >
+      <text class="key-label">{{item.note}}</text>
+    </view>
+  </view>
+</view>

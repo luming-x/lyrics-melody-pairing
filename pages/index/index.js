@@ -110,6 +110,34 @@ Page({
     })
   },
 
+  // 跳转到简谱生成
+  navigateToSheetMusic() {
+    wx.navigateTo({
+      url: '/pages/sheet-music/sheet-music'
+    })
+  },
+
+  // 跳转到钢琴
+  navigateToPiano() {
+    wx.navigateTo({
+      url: '/pages/piano/piano'
+    })
+  },
+
+  // 跳转到和弦库
+  navigateToChords() {
+    wx.navigateTo({
+      url: '/pages/chords/chords'
+    })
+  },
+
+  // 跳转到音高识别
+  navigateToPitchRecognition() {
+    wx.navigateTo({
+      url: '/pages/pitch-recognition/pitch-recognition'
+    })
+  },
+
   // 播放作品
   playWork(e) {
     const id = e.currentTarget.dataset.id

@@ -1,0 +1,80 @@
+<!-- 音高识别页面 -->
+<view class="pitch-page">
+  <!-- 当前音高显示 -->
+  <view class="pitch-display">
+    <view class="note-container">
+      <text class="note-text">{{currentNote}}</text>
+      <text class="octave-text">{{currentOctave}}</text>
+    </view>
+    
+    <view class="frequency-info">
+      <text class="frequency-value">{{currentFrequency.toFixed(1)}} Hz</text>
+      <view class="deviation-info">
+        <text class="deviation-label">音准偏差:</text>
+        <text class="deviation-value {{Math.abs(pitchDeviation) <= 10 ? 'good' : 'poor'}}">
+          {{pitchDeviation > 0 ? '+' : ''}}{{pitchDeviation}} 音分
+        </text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 调性分析 -->
+  <view class="key-analysis">
+    <text class="analysis-title">调性分析</text>
+    <view class="key-result">
+      <text class="key-value">{{detectedKey || '-'}}</text>
+      <text class="confidence-value">置信度: {{keyConfidence}}%</text>
+    </view>
+  </view>
+
+  <!-- 录音控制 -->
+  <view class="record-control">
+    <view 
+      class="record-btn {{isRecording ? 'recording' : ''}}"
+      bindtap="{{isRecording ? 'stopRecording' : 'startRecording'}}"
+    >
+      <view class="record-icon {{isRecording ? 'pulse' : ''}}">
+        {{isRecording ? '■' : '●'}}
+      </view>
+      <text class="record-text">{{isRecording ? '停止' : '开始识别'}}</text>
+    </view>
+  </view>
+
+  <!-- 音高历史 -->
+  <view class="pitch-history">
+    <view class="history-header">
+      <text class="history-title">音高历史</text>
+      <text class="clear-btn" bindtap="onClearHistory">清除</text>
+    </view>
+    
+    <scroll-view class="history-content" scroll-y>
+      <view class="history-list">
+        <view 
+          wx:for="{{noteHistory}}" 
+          wx:key="timestamp"
+          class="history-item"
+        >
+          <view class="item-note">
+            <text class="note-name">{{item.note}}{{item.octave}}</text>
+            <text class="note-freq">{{item.frequency.toFixed(1)}} Hz</text>
+          </view>
+          <view class="item-deviation {{Math.abs(item.deviation) <= 10 ? 'good' : 'poor'}}">
+            <text>{{item.deviation > 0 ? '+' : ''}}{{item.deviation}}</text>
+          </view>
+        </view>
+        
+        <view wx:if="{{noteHistory.length === 0}}" class="history-empty">
+          <text class="empty-text">暂无记录</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 使用说明 -->
+  <view class="tips">
+    <text class="tips-title">使用说明</text>
+    <text class="tips-text">• 点击开始识别按钮进行音高检测</text>
+    <text class="tips-text">• 音准偏差在±10音分内表示音准准确</text>
+    <text class="tips-text">• 支持实时识别和历史记录查看</text>
+  </view>
+</view>

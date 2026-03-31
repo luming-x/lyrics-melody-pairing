@@ -1,0 +1,93 @@
+<!-- 钢琴页面 -->
+<view class="piano-page">
+  <!-- 顶部信息 -->
+  <view class="header">
+    <text class="title">虚拟钢琴</text>
+    <view class="settings-btn" bindtap="onToggleSettings">
+      <text class="icon">⚙️</text>
+    </view>
+  </view>
+
+  <!-- 当前音符显示 -->
+  <view class="current-note">
+    <text class="note-label">当前音符</text>
+    <text class="note-value">{{lastPlayedNote || '-'}}</text>
+  </view>
+
+  <!-- 钢琴键盘 -->
+  <view class="keyboard-container">
+    <piano-keyboard
+      startOctave="{{startOctave}}"
+      endOctave="{{endOctave}}"
+      interactive="{{interactive}}"
+      bind:noteon="onNoteOn"
+      bind:noteoff="onNoteOff"
+    />
+  </view>
+
+  <!-- 音符历史 -->
+  <view class="note-history">
+    <view class="history-header">
+      <text class="history-title">演奏历史</text>
+      <text class="clear-btn" bindtap="onClearHistory">清除</text>
+    </view>
+    <scroll-view class="history-content" scroll-x>
+      <view class="history-list">
+        <view 
+          wx:for="{{noteHistory}}" 
+          wx:key="*this"
+          class="history-item"
+        >
+          <text class="history-note">{{item}}</text>
+        </view>
+        <view wx:if="{{noteHistory.length === 0}}" class="history-empty">
+          <text class="empty-text">暂无演奏记录</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 设置面板 -->
+  <view wx:if="{{showSettings}}" class="settings-panel" bindtap="onToggleSettings">
+    <view class="settings-content" catchtap>
+      <view class="settings-header">
+        <text class="settings-title">设置</text>
+      </view>
+      
+      <view class="setting-item">
+        <text class="setting-label">起始八度</text>
+        <picker 
+          mode="selector" 
+          range="{{['1', '2', '3', '4', '5', '6', '7']}}"
+          value="{{startOctave - 1}}"
+          bindchange="onChangeStartOctave"
+        >
+          <view class="setting-value">
+            <text>{{startOctave}}</text>
+            <text class="arrow">›</text>
+          </view>
+        </picker>
+      </view>
+      
+      <view class="setting-item">
+        <text class="setting-label">结束八度</text>
+        <picker 
+          mode="selector" 
+          range="{{['2', '3', '4', '5', '6', '7', '8']}}"
+          value="{{endOctave - 2}}"
+          bindchange="onChangeEndOctave"
+        >
+          <view class="setting-value">
+            <text>{{endOctave}}</text>
+            <text class="arrow">›</text>
+          </view>
+        </picker>
+      </view>
+      
+      <view class="setting-item">
+        <text class="setting-label">交互模式</text>
+        <switch class="switch" checked="{{interactive}}" bindchange="onToggleInteractive" />
+      </view>
+    </view>
+  </view>
+</view>

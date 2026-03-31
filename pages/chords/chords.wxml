@@ -1,0 +1,143 @@
+<!-- 吉他和弦库页面 -->
+<view class="chords-page">
+  <!-- 顶部搜索 -->
+  <view class="search-bar">
+    <input 
+      class="search-input" 
+      placeholder="搜索和弦..." 
+      value="{{searchKeyword}}"
+      bindinput="onSearchInput"
+      bindconfirm="onSearch"
+    />
+    <text class="search-btn" bindtap="onSearch">搜索</text>
+  </view>
+
+  <!-- 调式选择 -->
+  <scroll-view class="key-selector" scroll-x>
+    <view class="key-list">
+      <view 
+        class="key-item {{selectedKey === '全部' ? 'active' : ''}}"
+        data-key="全部"
+        bindtap="onSelectKey"
+      >
+        全部
+      </view>
+      <view 
+        wx:for="{{allKeys}}" 
+        wx:key="*this"
+        class="key-item {{selectedKey === item ? 'active' : ''}}"
+        data-key="{{item}}"
+        bindtap="onSelectKey"
+      >
+        {{item}}
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 类型选择 -->
+  <view class="type-selector">
+    <view 
+      class="type-item {{selectedType === '全部' ? 'active' : ''}}"
+      data-type="全部"
+      bindtap="onSelectType"
+    >
+      全部
+    </view>
+    <view 
+      wx:for="{{allTypes}}" 
+      wx:key="*this"
+      class="type-item {{selectedType === item ? 'active' : ''}}"
+      data-type="{{item}}"
+      bindtap="onSelectType"
+    >
+      {{item}}
+    </view>
+  </view>
+
+  <!-- 和弦列表 -->
+  <view class="chord-list">
+    <view 
+      wx:for="{{chordList}}" 
+      wx:key="*this"
+      class="chord-item"
+      data-chord="{{item}}"
+      bindtap="onChordTap"
+    >
+      <view class="chord-name">{{item}}</view>
+      <view class="chord-arrow">›</view>
+    </view>
+    <view wx:if="{{chordList.length === 0}}" class="empty-tip">
+      <text class="empty-text">未找到和弦</text>
+    </view>
+  </view>
+
+  <!-- 和弦详情弹窗 -->
+  <view wx:if="{{showChordDetail}}" class="chord-modal" bindtap="onCloseChordDetail">
+    <view class="chord-detail" catchtap>
+      <view class="detail-header">
+        <text class="chord-title">{{selectedChord.name}}</text>
+        <text class="close-btn" bindtap="onCloseChordDetail">×</text>
+      </view>
+      
+      <!-- 和弦图表 -->
+      <view class="chord-diagram">
+        <!-- 弦线 -->
+        <view class="strings">
+          <view 
+            wx:for="{{selectedChord.frets}}" 
+            wx:key="*this"
+            class="string"
+          >
+            <!-- 品位 -->
+            <view 
+              wx:if="{{item === -1}}"
+              class="mute-mark"
+            >
+              ×
+            </view>
+            <view 
+              wx:elif="{{item === 0}}"
+              class="open-mark"
+            >
+              ○
+            </view>
+            <view 
+              wx:else
+              class="fret-dot"
+              style="margin-top: {{item * 40 + 20}}rpx"
+            >
+              ●
+            </view>
+          </view>
+        </view>
+        
+        <!-- 品线 -->
+        <view class="frets">
+          <view wx:for="{{[0,1,2,3,4]}}" wx:key="*this" class="fret-line">
+            <text class="fret-number">{{item}}</text>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 指法说明 -->
+      <view class="fingering-info">
+        <text class="info-title">指法</text>
+        <view class="fingering-display">
+          <text 
+            wx:for="{{selectedChord.fingers}}" 
+            wx:key="*this"
+            class="finger-num"
+          >
+            {{item === 0 ? '-' : item}}
+          </text>
+        </view>
+      </view>
+      
+      <!-- 播放按钮 -->
+      <view class="play-btn" bindtap="onPlayChord">
+        <text class="play-icon">▶</text>
+        <text class="play-text">播放和弦</text>
+      </view>
+    </view>
+  </view>
+</view>

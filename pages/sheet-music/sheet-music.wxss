@@ -1,0 +1,167 @@
+/* 简谱生成页面样式 */
+.sheet-music-page {
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+/* 顶部标题 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.back-btn {
+  font-size: 40rpx;
+  padding: 10rpx;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.actions {
+  display: flex;
+  gap: 20rpx;
+}
+
+.action-btn {
+  font-size: 28rpx;
+  padding: 10rpx 20rpx;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8rpx;
+}
+
+/* 控制面板 */
+.control-panel {
+  background: white;
+  margin: 20rpx;
+  border-radius: 16rpx;
+  padding: 30rpx;
+}
+
+.control-group {
+  margin-bottom: 30rpx;
+}
+
+.control-group:last-child {
+  margin-bottom: 0;
+}
+
+.control-label {
+  display: block;
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 16rpx;
+}
+
+/* 调式选择器 */
+.key-selector {
+  width: 100%;
+}
+
+.key-list {
+  display: flex;
+  gap: 12rpx;
+  white-space: nowrap;
+}
+
+.key-item {
+  flex-shrink: 0;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  color: #333;
+  transition: all 0.3s;
+}
+
+.key-item.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: bold;
+}
+
+/* 拍号选择器 */
+.signature-selector {
+  display: flex;
+  gap: 16rpx;
+}
+
+.signature-item {
+  flex: 1;
+  height: 70rpx;
+  border-radius: 12rpx;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  color: #333;
+  transition: all 0.3s;
+}
+
+.signature-item.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: bold;
+}
+
+/* 开关 */
+.switch {
+  transform: scale(1.2);
+}
+
+/* 简谱显示区域 */
+.sheet-music-container {
+  height: calc(100vh - 450rpx);
+  background: white;
+  margin: 0 20rpx 20rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.sheet-music-scroll {
+  height: 100%;
+}
+
+.sheet-music-content {
+  padding: 40rpx;
+  min-height: 100%;
+}
+
+.empty-text {
+  display: block;
+  text-align: center;
+  color: #999;
+  font-size: 28rpx;
+  margin-top: 200rpx;
+}
+
+.sheet-music-text {
+  line-height: 2;
+}
+
+.music-line {
+  font-family: 'Courier New', monospace;
+  font-size: 32rpx;
+  line-height: 80rpx;
+  white-space: pre-wrap;
+  color: #333;
+  display: block;
+}
+
+/* Canvas */
+.sheet-canvas {
+  position: fixed;
+  top: -9999px;
+  left: -9999px;
+}

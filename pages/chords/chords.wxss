@@ -1,0 +1,297 @@
+/* 吉他和弦库页面样式 */
+.chords-page {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-bottom: 40rpx;
+}
+
+/* 搜索栏 */
+.search-bar {
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  background: white;
+  gap: 20rpx;
+}
+
+.search-input {
+  flex: 1;
+  height: 70rpx;
+  background: #f5f5f5;
+  border-radius: 35rpx;
+  padding: 0 30rpx;
+  font-size: 28rpx;
+}
+
+.search-btn {
+  font-size: 28rpx;
+  color: #667eea;
+}
+
+/* 调式选择器 */
+.key-selector {
+  white-space: nowrap;
+  background: white;
+  padding: 20rpx 0;
+}
+
+.key-list {
+  display: inline-flex;
+  gap: 12rpx;
+  padding: 0 20rpx;
+}
+
+.key-item {
+  flex-shrink: 0;
+  padding: 16rpx 32rpx;
+  border-radius: 30rpx;
+  background: #f5f5f5;
+  font-size: 28rpx;
+  color: #666;
+  transition: all 0.3s;
+}
+
+.key-item.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+/* 类型选择器 */
+.type-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  padding: 20rpx;
+  background: white;
+  margin-top: 2rpx;
+}
+
+.type-item {
+  padding: 12rpx 24rpx;
+  border-radius: 20rpx;
+  background: #f5f5f5;
+  font-size: 24rpx;
+  color: #666;
+  transition: all 0.3s;
+}
+
+.type-item.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+/* 和弦列表 */
+.chord-list {
+  padding: 20rpx;
+}
+
+.chord-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  background: white;
+  border-radius: 16rpx;
+  margin-bottom: 16rpx;
+  transition: all 0.3s;
+}
+
+.chord-item:active {
+  background: #f5f5f5;
+}
+
+.chord-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.chord-arrow {
+  font-size: 40rpx;
+  color: #ccc;
+}
+
+.empty-tip {
+  text-align: center;
+  padding: 80rpx 0;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
+}
+
+/* 和弦详情弹窗 */
+.chord-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.chord-detail {
+  width: 600rpx;
+  background: white;
+  border-radius: 24rpx;
+  padding: 40rpx;
+  animation: popup 0.3s ease-out;
+}
+
+@keyframes popup {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.chord-title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.close-btn {
+  font-size: 60rpx;
+  color: #999;
+  line-height: 1;
+}
+
+/* 和弦图表 */
+.chord-diagram {
+  position: relative;
+  height: 300rpx;
+  background: #f8f8f8;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.strings {
+  display: flex;
+  justify-content: space-around;
+  height: 260rpx;
+  padding-top: 20rpx;
+}
+
+.string {
+  flex: 1;
+  height: 100%;
+  border-right: 2rpx solid #ddd;
+  position: relative;
+}
+
+.string:last-child {
+  border-right: none;
+}
+
+.mute-mark,
+.open-mark,
+.fret-dot {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 32rpx;
+}
+
+.mute-mark {
+  top: -10rpx;
+  color: #ff6b6b;
+}
+
+.open-mark {
+  top: -10rpx;
+  color: #51cf66;
+}
+
+.fret-dot {
+  color: #667eea;
+}
+
+.frets {
+  position: absolute;
+  bottom: 20rpx;
+  left: 20rpx;
+  right: 20rpx;
+  display: flex;
+}
+
+.fret-line {
+  flex: 1;
+  height: 2rpx;
+  background: #ddd;
+  position: relative;
+  border-left: 1rpx solid #ddd;
+}
+
+.fret-number {
+  position: absolute;
+  top: -20rpx;
+  left: 4rpx;
+  font-size: 20rpx;
+  color: #999;
+}
+
+/* 指法说明 */
+.fingering-info {
+  margin-bottom: 30rpx;
+}
+
+.info-title {
+  display: block;
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 16rpx;
+}
+
+.fingering-display {
+  display: flex;
+  justify-content: space-around;
+  padding: 20rpx 0;
+  background: #f8f8f8;
+  border-radius: 12rpx;
+}
+
+.finger-num {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #667eea;
+}
+
+/* 播放按钮 */
+.play-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+  height: 90rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 45rpx;
+}
+
+.play-icon {
+  font-size: 32rpx;
+  color: white;
+}
+
+.play-text {
+  font-size: 28rpx;
+  color: white;
+  font-weight: bold;
+}

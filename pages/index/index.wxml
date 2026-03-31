@@ -40,6 +40,31 @@
     </view>
   </view>
 
+  <!-- 音乐工具 -->
+  <view class="tools-section">
+    <view class="section-header">
+      <text class="section-title">音乐工具</text>
+    </view>
+    <view class="tools-grid">
+      <view class="tool-item" bindtap="navigateToSheetMusic">
+        <view class="tool-icon">📝</view>
+        <text class="tool-text">简谱生成</text>
+      </view>
+      <view class="tool-item" bindtap="navigateToPiano">
+        <view class="tool-icon">🎹</view>
+        <text class="tool-text">虚拟钢琴</text>
+      </view>
+      <view class="tool-item" bindtap="navigateToChords">
+        <view class="tool-icon">🎸</view>
+        <text class="tool-text">和弦库</text>
+      </view>
+      <view class="tool-item" bindtap="navigateToPitchRecognition">
+        <view class="tool-icon">🎤</view>
+        <text class="tool-text">音高识别</text>
+      </view>
+    </view>
+  </view>
+
   <!-- 最近作品 -->
   <view class="recent-section">
     <view class="section-header">

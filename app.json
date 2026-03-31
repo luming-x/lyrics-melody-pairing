@@ -10,7 +10,11 @@
     "pages/metronome/metronome",
     "pages/goals/goals",
     "pages/ai-assistant/ai-assistant",
-    "pages/ai-history/ai-history"
+    "pages/ai-history/ai-history",
+    "pages/sheet-music/sheet-music",
+    "pages/piano/piano",
+    "pages/chords/chords",
+    "pages/pitch-recognition/pitch-recognition"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,103 @@
+/* 钢琴虚拟键盘组件样式 */
+.piano-keyboard {
+  position: relative;
+  width: 100%;
+  height: 400rpx;
+  background: #2c2c2c;
+  border-radius: 12rpx;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* 白键层 */
+.white-keys-layer {
+  display: flex;
+  height: 100%;
+  padding: 0 10rpx;
+}
+
+.white-key {
+  flex: 1;
+  height: 100%;
+  background: linear-gradient(to bottom, #f8f8f8 0%, #e0e0e0 100%);
+  border: 2rpx solid #ccc;
+  border-radius: 0 0 8rpx 8rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 30rpx;
+  transition: background 0.1s, transform 0.1s;
+  position: relative;
+  z-index: 1;
+}
+
+.white-key.pressed {
+  background: linear-gradient(to bottom, #e0e0e0 0%, #c0c0c0 100%);
+  transform: translateY(4rpx);
+  box-shadow: inset 0 0 10rpx rgba(0, 0, 0, 0.2);
+}
+
+.white-key:not(:first-child) {
+  border-left: none;
+}
+
+/* 黑键层 */
+.black-keys-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.black-key {
+  position: absolute;
+  width: 60rpx;
+  height: 100%;
+  background: linear-gradient(to bottom, #2c2c2c 0%, #1a1a1a 100%);
+  border-radius: 0 0 6rpx 6rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 20rpx;
+  transform: translateX(-50%);
+  pointer-events: auto;
+  transition: background 0.1s, transform 0.1s;
+  box-shadow: 2rpx 4rpx 8rpx rgba(0, 0, 0, 0.5);
+}
+
+.black-key.pressed {
+  background: linear-gradient(to bottom, #1a1a1a 0%, #000000 100%);
+  transform: translateX(-50%) translateY(4rpx);
+}
+
+/* 键标 */
+.key-label {
+  font-size: 20rpx;
+  color: #666;
+  font-weight: bold;
+}
+
+.black-key .key-label {
+  color: #999;
+  font-size: 18rpx;
+}
+
+/* 响应式调整 */
+@media (max-width: 750rpx) {
+  .piano-keyboard {
+    height: 350rpx;
+  }
+  
+  .white-key {
+    padding-bottom: 20rpx;
+  }
+  
+  .black-key {
+    width: 50rpx;
+  }
+}

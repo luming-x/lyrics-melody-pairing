@@ -46,8 +46,45 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 16.66%;
+  width: 33.33%;
   margin-bottom: 20rpx;
+}
+
+/* 音乐工具区域 */
+.tools-section {
+  padding: 30rpx;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20rpx;
+}
+
+.tool-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx 20rpx;
+  background: white;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.08);
+  transition: all 0.3s;
+}
+
+.tool-item:active {
+  transform: scale(0.95);
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.12);
+}
+
+.tool-icon {
+  font-size: 60rpx;
+  margin-bottom: 16rpx;
+}
+
+.tool-text {
+  font-size: 24rpx;
+  color: #666;
 }
 
 .action-icon {

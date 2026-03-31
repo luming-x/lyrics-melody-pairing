@@ -1,0 +1,77 @@
+<!-- 简谱生成页面 -->
+<view class="sheet-music-page">
+  <!-- 顶部标题 -->
+  <view class="header">
+    <view class="back-btn" bindtap="onBack">
+      <text class="icon">←</text>
+    </view>
+    <text class="title">简谱生成</text>
+    <view class="actions">
+      <text class="action-btn" bindtap="onCopySheetMusic">复制</text>
+      <text class="action-btn" bindtap="onSaveAsImage">保存图片</text>
+    </view>
+  </view>
+
+  <!-- 控制面板 -->
+  <view class="control-panel">
+    <view class="control-group">
+      <text class="control-label">调式</text>
+      <scroll-view class="key-selector" scroll-x>
+        <view class="key-list">
+          <view 
+            wx:for="{{keys}}" 
+            wx:key="*this"
+            class="key-item {{selectedKey === item ? 'active' : ''}}"
+            data-key="{{item}}"
+            bindtap="onSelectKey"
+          >
+            {{item}}
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <view class="control-group">
+      <text class="control-label">拍号</text>
+      <view class="signature-selector">
+        <view 
+          wx:for="{{signatures}}" 
+          wx:key="*this"
+          class="signature-item {{selectedSignature === item ? 'active' : ''}}"
+          data-signature="{{item}}"
+          bindtap="onSelectSignature"
+        >
+          {{item}}
+        </view>
+      </view>
+    </view>
+
+    <view class="control-group">
+      <text class="control-label">显示歌词</text>
+      <switch class="switch" checked="{{showLyrics}}" bindchange="onToggleLyrics" />
+    </view>
+  </view>
+
+  <!-- 简谱显示区域 -->
+  <view class="sheet-music-container">
+    <scroll-view class="sheet-music-scroll" scroll-y>
+      <view class="sheet-music-content">
+        <text wx:if="{{!sheetMusicText}}" class="empty-text">
+          {{isGenerating ? '生成中...' : '暂无简谱'}}
+        </text>
+        
+        <view wx:if="{{sheetMusicText}}" class="sheet-music-text">
+          <text class="music-line">{{sheetMusicText}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- Canvas用于导出图片 -->
+  <canvas 
+    type="2d" 
+    id="sheetCanvas" 
+    class="sheet-canvas"
+    style="width: 750px; height: 1334px;"
+  ></canvas>
+</view>

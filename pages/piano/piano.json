@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "piano-keyboard": "/components/piano-keyboard/piano-keyboard"
+  },
+  "navigationBarTitleText": "虚拟钢琴",
+  "enablePullDownRefresh": false
+}
